@@ -8,6 +8,7 @@ import CardFooter from "../../components/Card/CardFooter";
 import CustomInput from "../../components/CustomInput/CustomInput";
 import Button from "components/CustomButtons/Button.js";
 import { makeStyles } from "@material-ui/core/styles";
+import { NavLink } from "react-router-dom"
 
 const styles = {
   cardCategoryWhite: {
@@ -33,6 +34,13 @@ const useStyles = makeStyles(styles);
 export default function SignUp() {
 
   const classes = useStyles();
+  const [email, setEmail] = React.useState('')
+  const [password, setPassword] = React.useState('')
+  const [repeatPassword, setRepeatPassword] = React.useState('')
+
+  const register = () => {
+    console.log({email, password, repeatPassword})
+  }
 
   return (
     <GridContainer>
@@ -48,6 +56,7 @@ export default function SignUp() {
                 <CustomInput
                   labelText="Email Address"
                   id="email-address"
+                  inputControl={setEmail}
                   formControlProps={{
                     fullWidth: true
                   }}
@@ -60,6 +69,7 @@ export default function SignUp() {
                   labelText="Password"
                   id="password"
                   type="password"
+                  inputControl={setPassword}
                   formControlProps={{
                     fullWidth: true
                   }}
@@ -72,6 +82,7 @@ export default function SignUp() {
                   labelText="Reapeat Password"
                   id="repeat-password"
                   type="password"
+                  inputControl={setRepeatPassword}
                   formControlProps={{
                     fullWidth: true
                   }}
@@ -80,9 +91,9 @@ export default function SignUp() {
             </GridContainer>
           </CardBody>
           <CardFooter>
-            <Button color="primary">Sign Up</Button>
+            <Button color="primary" onClick={register}>Sign Up</Button>
           </CardFooter>
-          <a href="" className="primary" style={{marginLeft: 15}}>already have an account? sign-in</a>
+          <NavLink className="primary" style={{marginLeft: 15}} to="/signin">already have an account? sign-in</NavLink>
         </Card>
       </GridItem>
     </GridContainer>

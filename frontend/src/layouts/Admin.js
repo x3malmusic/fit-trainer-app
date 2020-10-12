@@ -15,23 +15,21 @@ import styles from "assets/jss/material-dashboard-react/layouts/adminStyle.js";
 import bgImage from "assets/img/sidebar-2.jpg";
 import logo from "assets/img/reactlogo.png";
 
-const switchRoutes = (routes) => (
-  <Switch>
-    {routes.map((prop, key) => {
-      if (prop.layout === "/admin") {
-        return (
-          <Route
-            path={prop.layout + prop.path}
-            component={prop.component}
-            key={key}
-          />
-        );
-      }
-      return null;
-    })}
-    <Redirect from="/admin" to="/admin/dashboard" />
-  </Switch>
-);
+const switchRoutes = (routes) => {
+  return (
+    <Switch>
+      {routes.map((prop, key) => {
+          return (
+            <Route
+              path={prop.path}
+              component={prop.component}
+              key={key}
+            />
+          );
+      })}
+    </Switch>
+  )
+};
 
 const useStyles = makeStyles(styles);
 

@@ -59,6 +59,7 @@ export default function CustomInput(props) {
           underline: underlineClasses
         }}
         type={props.type || 'text'}
+        onChange={e => props.inputControl(e.target.value)}
         id={id}
         {...inputProps}
       />
@@ -79,5 +80,6 @@ CustomInput.propTypes = {
   formControlProps: PropTypes.object,
   error: PropTypes.bool,
   success: PropTypes.bool,
-  type: PropTypes.string
+  type: PropTypes.string,
+  inputControl: PropTypes.func
 };

@@ -8,6 +8,7 @@ import CardFooter from "../../components/Card/CardFooter";
 import CustomInput from "../../components/CustomInput/CustomInput";
 import Button from "components/CustomButtons/Button.js";
 import { makeStyles } from "@material-ui/core/styles";
+import { NavLink } from "react-router-dom"
 
 const styles = {
   cardCategoryWhite: {
@@ -33,6 +34,13 @@ const useStyles = makeStyles(styles);
 export default function SignIn() {
   const classes = useStyles();
 
+  const [email, setEmail] = React.useState('')
+  const [password, setPassword] = React.useState('')
+
+  const login = () => {
+    console.log({email, password})
+  }
+
   return (
         <GridContainer>
           <GridItem xs={12} sm={12} md={6}>
@@ -47,6 +55,7 @@ export default function SignIn() {
                     <CustomInput
                       labelText="Email Address"
                       id="email-address"
+                      inputControl={setEmail}
                       formControlProps={{
                         fullWidth: true
                       }}
@@ -59,6 +68,7 @@ export default function SignIn() {
                       labelText="Password"
                       id="password"
                       type="password"
+                      inputControl={setPassword}
                       formControlProps={{
                         fullWidth: true
                       }}
@@ -67,9 +77,9 @@ export default function SignIn() {
                 </GridContainer>
               </CardBody>
               <CardFooter>
-                <Button color="primary">Sign In</Button>
+                <Button color="primary" onClick={login}>Sign In</Button>
               </CardFooter>
-              <a href="" className="primary" style={{marginLeft: 15}}>first time user? sign-up</a>
+              <NavLink className="primary" style={{marginLeft: 15}} to="/signup">first time user? sign-up</NavLink>
             </Card>
           </GridItem>
         </GridContainer>

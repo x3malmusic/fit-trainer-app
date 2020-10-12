@@ -15,14 +15,13 @@ export const authRoutes = [
     name: "SigIn",
     icon: Dashboard,
     component: SignIn,
-    layout: "/admin"
   },
   {
   path: "/signup",
     name: "SignUp",
     icon: Dashboard,
     component: SignUp,
-    layout: "/admin"},
+  },
 ]
 
 
@@ -32,35 +31,30 @@ export const dashboardRoutes = [
     name: "Dashboard",
     icon: Dashboard,
     component: DashboardPage,
-    layout: "/admin"
   },
   {
     path: "/newExercise",
     name: "NewExercise",
     icon: Dashboard,
     component: NewExercise,
-    layout: "/admin"
   },
   {
     path: "/editExercise",
     name: "EditExercise",
     icon: Dashboard,
     component: EditExercise,
-    layout: "/admin"
   },
   {
     path: "/newWorkout",
     name: "NewWorkout",
     icon: Dashboard,
     component: NewWorkout,
-    layout: "/admin"
   },
   {
     path: "/editWorkout",
     name: "EditWorkout",
     icon: Dashboard,
     component: EditWorkout,
-    layout: "/admin"
   },
 
 ];
