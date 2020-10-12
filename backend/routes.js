@@ -4,9 +4,9 @@ import { login, register } from "./controllers/auth";
 
 const router = route();
 
-router.post('login', login)
+router.post('/login', login)
 
-router.post('register', register)
+router.post('/register', register)
 
 
 
