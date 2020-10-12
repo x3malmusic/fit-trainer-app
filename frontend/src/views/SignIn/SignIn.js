@@ -35,7 +35,7 @@ export default function SignIn() {
 
   return (
         <GridContainer>
-          <GridItem xs={12} sm={12} md={8}>
+          <GridItem xs={12} sm={12} md={6}>
             <Card>
               <CardHeader color="primary">
                 <h4 className={classes.cardTitleWhite}>Sign into Fit Trainer App</h4>
@@ -43,7 +43,7 @@ export default function SignIn() {
               </CardHeader>
               <CardBody>
                 <GridContainer>
-                  <GridItem xs={12} sm={12} md={4}>
+                  <GridItem xs={12} sm={12} md={6}>
                     <CustomInput
                       labelText="Email Address"
                       id="email-address"
@@ -54,7 +54,7 @@ export default function SignIn() {
                   </GridItem>
                 </GridContainer>
                 <GridContainer>
-                  <GridItem xs={12} sm={12} md={4}>
+                  <GridItem xs={12} sm={12} md={6}>
                     <CustomInput
                       labelText="Password"
                       id="password"
@@ -69,6 +69,7 @@ export default function SignIn() {
               <CardFooter>
                 <Button color="primary">Sign In</Button>
               </CardFooter>
+              <a href="" className="primary" style={{marginLeft: 15}}>first time user? sign-up</a>
             </Card>
           </GridItem>
         </GridContainer>

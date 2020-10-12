@@ -1,14 +1,8 @@
 import React from "react";
 // @material-ui/core
-import { makeStyles } from "@material-ui/core/styles";
 import GridItem from "components/Grid/GridItem.js";
 import GridContainer from "components/Grid/GridContainer.js";
 
-
-
-import styles from "assets/jss/material-dashboard-react/views/dashboardStyle.js";
-
-const useStyles = makeStyles(styles);
 
 export default function Dashboard() {
   return (
