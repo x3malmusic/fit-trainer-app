@@ -9,6 +9,7 @@ import CustomInput from "../../components/CustomInput/CustomInput";
 import Button from "components/CustomButtons/Button.js";
 import { makeStyles } from "@material-ui/core/styles";
 import { NavLink } from "react-router-dom"
+import http from "../../services/http";
 
 const styles = {
   cardCategoryWhite: {
@@ -34,12 +35,19 @@ const useStyles = makeStyles(styles);
 export default function SignIn() {
   const classes = useStyles();
 
+  const [error, setError] = React.useState('')
   const [email, setEmail] = React.useState('')
   const [password, setPassword] = React.useState('')
 
   const login = () => {
-    console.log({email, password})
+    try {
+      http.post('/login', {email, password})
+    } catch (e) {
+      setError(e.message)
+    }
   }
+
+  React.useEffect(() => {setError('')},[email, password])
 
   return (
         <GridContainer>
@@ -51,6 +59,12 @@ export default function SignIn() {
               </CardHeader>
               <CardBody>
                 <GridContainer>
+                  {error && (
+                    <GridContainer>
+                      <GridItem xs={12} sm={12} md={6}>
+                        <p style={{color: 'red'}}>{error}</p>
+                      </GridItem>
+                    </GridContainer>)}
                   <GridItem xs={12} sm={12} md={6}>
                     <CustomInput
                       labelText="Email Address"

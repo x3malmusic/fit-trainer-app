@@ -9,6 +9,7 @@ import CustomInput from "../../components/CustomInput/CustomInput";
 import Button from "components/CustomButtons/Button.js";
 import { makeStyles } from "@material-ui/core/styles";
 import { NavLink } from "react-router-dom"
+import http from "../../services/http";
 
 const styles = {
   cardCategoryWhite: {
@@ -34,13 +35,22 @@ const useStyles = makeStyles(styles);
 export default function SignUp() {
 
   const classes = useStyles();
+  const [error, setError] = React.useState('')
   const [email, setEmail] = React.useState('')
   const [password, setPassword] = React.useState('')
   const [repeatPassword, setRepeatPassword] = React.useState('')
 
   const register = () => {
-    console.log({email, password, repeatPassword})
+    if(password === repeatPassword) {
+      try {
+        http.post('/register',{email, password})
+      } catch(e) {
+        setError(e.message)
+      }
+    } else setError('passwords do not match')
   }
+
+  React.useEffect(() => {setError('')}, [email, password, repeatPassword])
 
   return (
     <GridContainer>
@@ -51,6 +61,13 @@ export default function SignUp() {
             <p className={classes.cardCategoryWhite}>Please, enter your email and password</p>
           </CardHeader>
           <CardBody>
+            {error && (
+              <GridContainer>
+                <GridItem xs={12} sm={12} md={6}>
+                  <p style={{color: 'red'}}>{error}</p>
+                </GridItem>
+              </GridContainer>
+            )}
             <GridContainer>
               <GridItem xs={12} sm={12} md={6}>
                 <CustomInput
