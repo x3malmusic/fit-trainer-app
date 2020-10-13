@@ -1,13 +1,13 @@
 import React from "react";
 import {Route, Switch, useLocation} from "react-router-dom";
 
-import Sidebar from "../../components/Sidebar/Sidebar";
-import {authRoutes, dashboardRoutes} from "../../routes";
-import logo from "../../assets/img/reactlogo.png";
-import bgImage from "../../assets/img/sidebar-2.jpg";
-import Navbar from "../../components/Navbars/Navbar";
-import Footer from "../../components/Footer/Footer";
-import EmailVerify from '../EmailVerify/EmailVerify'
+import Sidebar from "../components/Sidebar/Sidebar";
+import {authRoutes, dashboardRoutes} from "../routes";
+import logo from "../assets/img/reactlogo.png";
+import bgImage from "../assets/img/sidebar-2.jpg";
+import Navbar from "../components/Navbars/Navbar";
+import Footer from "../components/Footer/Footer";
+import EmailVerify from './EmailVerify'
 
 import styles from "assets/jss/material-dashboard-react/layouts/adminStyle.js";
 import {makeStyles} from "@material-ui/core/styles";

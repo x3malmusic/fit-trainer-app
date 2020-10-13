@@ -1,16 +1,16 @@
 import React from "react";
-import GridContainer from "../../components/Grid/GridContainer";
-import GridItem from "../../components/Grid/GridItem";
-import Card from "../../components/Card/Card";
-import CardHeader from "../../components/Card/CardHeader";
-import CardBody from "../../components/Card/CardBody";
-import CustomInput from "../../components/CustomInput/CustomInput";
-import CardFooter from "../../components/Card/CardFooter";
-import Button from "../../components/CustomButtons/Button";
+import GridContainer from "../components/Grid/GridContainer";
+import GridItem from "../components/Grid/GridItem";
+import Card from "../components/Card/Card";
+import CardHeader from "../components/Card/CardHeader";
+import CardBody from "../components/Card/CardBody";
+import CustomInput from "../components/CustomInput/CustomInput";
+import CardFooter from "../components/Card/CardFooter";
+import Button from "../components/CustomButtons/Button";
 import {NavLink} from "react-router-dom";
-import http from "../../services/http";
+import http from "../services/http";
 import {makeStyles} from "@material-ui/core/styles";
-import {styles} from "../../assets/jss/material-dashboard-react/views/authStyle";
+import {styles} from "../assets/jss/material-dashboard-react/views/authStyle";
 
 const useStyles = makeStyles(styles);
 
