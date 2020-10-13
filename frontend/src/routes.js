@@ -12,13 +12,13 @@ import SignUp from "./views/SignUp/SignUp";
 export const authRoutes = [
   {
     path: "/signin",
-    name: "SigIn",
+    name: "Sign In",
     icon: Dashboard,
     component: SignIn,
   },
   {
   path: "/signup",
-    name: "SignUp",
+    name: "Sign Up",
     icon: Dashboard,
     component: SignUp,
   },

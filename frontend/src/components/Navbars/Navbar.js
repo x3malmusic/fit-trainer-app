@@ -17,11 +17,12 @@ const useStyles = makeStyles(styles);
 
 export default function Header(props) {
   const classes = useStyles();
+
   function makeBrand() {
-    var name;
+    let name;
     props.routes.map(prop => {
-      if (window.location.href.indexOf(prop.path) !== -1) {
-        name = props.rtlActive ? prop.rtlName : prop.name;
+      if (props.currentRoute.pathname === prop.path) {
+        name = prop.name;
       }
       return null;
     });
@@ -35,7 +36,6 @@ export default function Header(props) {
     <AppBar className={classes.appBar + appBarClasses}>
       <Toolbar className={classes.container}>
         <div className={classes.flex}>
-          {/* Here we create navbar brand, based on route name */}
           <Button color="transparent" href="#" className={classes.title}>
             {makeBrand()}
           </Button>
