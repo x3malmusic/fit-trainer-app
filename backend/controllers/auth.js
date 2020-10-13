@@ -23,7 +23,7 @@ export const login = asyncHandler(async (req, res) => {
     expiresIn: "24h",
   });
 
-  res.send({email, exercises: user.exercises, workouts: user.workouts , token })
+  res.send({email, exercises: user.exercises, workouts: user.workouts , token, emailConfirmed: user.emailConfirmed })
 })
 
 export const register = asyncHandler(async (req, res, next) => {
@@ -43,5 +43,5 @@ export const register = asyncHandler(async (req, res, next) => {
     expiresIn: "24h",
   });
 
-  res.send({ email, exercises: [], workouts: [] , token })
+  res.send({ email, exercises: [], workouts: [] , token, emailConfirmed: false })
 })
