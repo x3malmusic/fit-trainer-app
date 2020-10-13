@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import GridContainer from "../components/Grid/GridContainer";
 import GridItem from "../components/Grid/GridItem";
 import Card from "../components/Card/Card";
@@ -9,30 +9,26 @@ import CustomInput from "../components/CustomInput/CustomInput";
 import Button from "components/CustomButtons/Button.js";
 import { makeStyles } from "@material-ui/core/styles";
 import { NavLink } from "react-router-dom"
-import http from "../services/http";
 import { styles } from "../assets/jss/material-dashboard-react/views/authStyle";
 
 const useStyles = makeStyles(styles);
 
-export default function SignUp() {
+export default function SignUp(props) {
+
+  const { registerUser, error, setError } = props
 
   const classes = useStyles();
-  const [error, setError] = React.useState('')
-  const [email, setEmail] = React.useState('')
-  const [password, setPassword] = React.useState('')
-  const [repeatPassword, setRepeatPassword] = React.useState('')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [repeatPassword, setRepeatPassword] = useState('')
 
   const register = () => {
     if(password === repeatPassword) {
-      try {
-        http.post('/register',{email, password})
-      } catch(e) {
-        setError(e.message)
-      }
+        registerUser({email, password})
     } else setError('passwords do not match')
   }
 
-  React.useEffect(() => {setError('')}, [email, password, repeatPassword])
+  useEffect(() => { setError('') }, [email, password, repeatPassword, setError])
 
   return (
     <GridContainer>

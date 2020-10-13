@@ -1,13 +1,13 @@
 // @material-ui/icons
 import Dashboard from "@material-ui/icons/Dashboard";
-// core components/views for Admin layout
-import DashboardPage from "views/Dashboard/Dashboard.js";
-import NewExercise from "./views/NewExercise/NewExercise";
-import EditExercise from "./views/EditExercise/EditExercise";
-import NewWorkout from "./views/NewWorkout/NewWorkout";
-import EditWorkout from "./views/EditWorkout/EditWorkout";
-import SignIn from "./views/SignIn/SignIn";
-import SignUp from "./views/SignUp/SignUp";
+
+import DashboardPage from "views/Dashboard.js";
+import NewExercise from "./views/NewExercise";
+import EditExercise from "./views/EditExercise";
+import NewWorkout from "./views/NewWorkout";
+import EditWorkout from "./views/EditWorkout";
+import SignIn from "./containers/SignIn";
+import SignUp from "./containers/SignUp";
 
 export const authRoutes = [
   {
