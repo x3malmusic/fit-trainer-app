@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, createRef, useEffect } from "react";
 import {Route, Switch, useLocation} from "react-router-dom";
 
 import Sidebar from "../components/Sidebar/Sidebar";
@@ -7,7 +7,8 @@ import logo from "../assets/img/reactlogo.png";
 import bgImage from "../assets/img/sidebar-2.jpg";
 import Navbar from "../components/Navbars/Navbar";
 import Footer from "../components/Footer/Footer";
-import EmailVerify from './EmailVerify'
+import EmailVerify from '../containers/EmailVerify'
+import { getToken } from "../services/token";
 
 import styles from "assets/jss/material-dashboard-react/layouts/adminStyle.js";
 import {makeStyles} from "@material-ui/core/styles";
@@ -31,26 +32,34 @@ const switchRoutes = (routes) => {
 
 const useStyles = makeStyles(styles);
 
-export default function App() {
+export default function App(props) {
+
+  const { emailConfirmed, getUser } = props
 
   const location = useLocation()
   // styles
   const classes = useStyles();
-  const [isLoggedIn, setIsLoggedIn] = React.useState(false)
   // ref to help us initialize PerfectScrollbar on windows devices
-  const mainPanel = React.createRef();
+  const mainPanel = createRef();
   // states and functions
-  const [mobileOpen, setMobileOpen] = React.useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
 
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
 
+  useEffect(() => {
+      const token = getToken()
+    if(token) {
+      getUser(token)
+    }
+  }, [getUser])
+
   return (
     <div className={classes.wrapper}>
       <Sidebar
-        routes={isLoggedIn ? dashboardRoutes : authRoutes}
+        routes={emailConfirmed ? dashboardRoutes : authRoutes}
         logoText={"Fit Trainer"}
         logo={logo}
         image={bgImage}
@@ -60,11 +69,11 @@ export default function App() {
       />
       <div className={classes.mainPanel} ref={mainPanel}>
         <Navbar
-          routes={isLoggedIn ? dashboardRoutes : authRoutes}
+          routes={emailConfirmed ? dashboardRoutes : authRoutes}
           currentRoute={location}
           handleDrawerToggle={handleDrawerToggle}
         />
-        { <div className={classes.map}>{switchRoutes(isLoggedIn ? dashboardRoutes : authRoutes)}</div> }
+        { <div className={classes.map}>{switchRoutes(emailConfirmed ? dashboardRoutes : authRoutes)}</div> }
         <Route path='/emailverify' component={EmailVerify}/>
       </div>
       <Footer />

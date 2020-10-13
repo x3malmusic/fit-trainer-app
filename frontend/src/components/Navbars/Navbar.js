@@ -24,8 +24,8 @@ export default function Header(props) {
       if (props.currentRoute.pathname === prop.path) {
         name = prop.name;
       }
-      return null;
     });
+    if(!name) name = "Email Verify"
     return name;
   }
   const { color } = props;

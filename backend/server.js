@@ -2,7 +2,8 @@ import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
 import { errorHandler } from "./middlewares/error";
-import routes from "./routes";
+import authRoutes from "./routes/authRoutes";
+import userRoutes from "./routes/userRoutes";
 import { connectDB } from "./database";
 
 const app = express();
@@ -20,7 +21,7 @@ app.use(
   })
 );
 
-app.use("/api", routes);
+app.use("/api", authRoutes, userRoutes);
 
 app.use(errorHandler);
 
