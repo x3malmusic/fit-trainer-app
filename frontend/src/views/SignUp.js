@@ -86,9 +86,17 @@ export default function SignUp(props) {
             </GridContainer>
           </CardBody>
           <CardFooter>
-            <Button color="primary" onClick={register}>Sign Up</Button>
+            <GridContainer>
+              <GridItem xs={12} sm={12} md={6}>
+                <Button color="primary" onClick={register}>Sign Up</Button>
+              </GridItem >
+            </ GridContainer>
           </CardFooter>
-          <NavLink className="primary" style={{marginLeft: 15}} to="/signin">already have an account? sign-in</NavLink>
+          <GridContainer style={{paddingBottom: 15}}>
+            <GridItem xs={12} sm={12} md={6}>
+              <NavLink className="primary" style={{marginLeft: 15, textDecoration: 'none'}} to="/signin">already have an account? sign-in</NavLink>
+            </GridItem >
+          </ GridContainer>
         </Card>
       </GridItem>
     </GridContainer>

@@ -35,12 +35,6 @@ export default function SignIn(props) {
               </CardHeader>
               <CardBody>
                 <GridContainer>
-                  {error && (
-                    <GridContainer>
-                      <GridItem xs={12} sm={12} md={6}>
-                        <p style={{color: 'red'}}>{error}</p>
-                      </GridItem>
-                    </GridContainer>)}
                   <GridItem xs={12} sm={12} md={6}>
                     <CustomInput
                       labelText="Email Address"
@@ -67,9 +61,17 @@ export default function SignIn(props) {
                 </GridContainer>
               </CardBody>
               <CardFooter>
-                <Button color="primary" onClick={login}>Sign In</Button>
+                <GridContainer>
+                  <GridItem xs={12} sm={12} md={6}>
+                    <Button color="primary" onClick={login}>Sign In</Button>
+                  </GridItem >
+                </ GridContainer>
               </CardFooter>
-              <NavLink className="primary" style={{marginLeft: 15}} to="/signup">first time user? sign-up</NavLink>
+              <GridContainer style={{paddingBottom: 15}}>
+                <GridItem xs={12} sm={12} md={6}>
+                  <NavLink className="primary" style={{marginLeft: 15, textDecoration: 'none'}} to="/signup">first time user? sign-up</NavLink>
+                </GridItem >
+              </ GridContainer>
             </Card>
           </GridItem>
         </GridContainer>
