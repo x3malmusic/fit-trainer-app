@@ -22,6 +22,11 @@ export default (state = initialState, action) => {
         ...state,
         error: action.payload,
       };
+    case "NEW_EXERCISE":
+      return {
+        ...state,
+        exercises: [...state.exercises, action.payload],
+      };
     default:
       return state;
   }

@@ -1,4 +1,8 @@
 export const styles = {
+  formControl: {
+    width: '100%',
+    marginTop: 35
+  },
   cardCategoryWhite: {
     color: "rgba(255,255,255,.62)",
     margin: "0",

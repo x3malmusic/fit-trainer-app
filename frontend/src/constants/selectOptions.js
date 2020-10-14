@@ -1,0 +1,1 @@
+export const measureTypes = ['Meters', 'Hours', 'Kilograms']
