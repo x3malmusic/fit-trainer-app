@@ -1,10 +1,13 @@
 import route from "express-promise-router";
-import { getUser } from "../controllers/users";
+import { createExercise } from "../controllers/exercises";
 import { verifyToken } from "../middlewares/jwtVerify";
+
 
 const router = route();
 
-router.get('/users', verifyToken, getUser)
+router.use(verifyToken)
+
+router.post('/exercises', createExercise)
 
 
 export default router

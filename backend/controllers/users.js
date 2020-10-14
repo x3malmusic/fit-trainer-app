@@ -7,7 +7,7 @@ export const getUser = asyncHandler(async (req, res, next) => {
 
   const user = await User.findOne({email})
   if(!user) {
-    next('User not Found')
+    return next('User not Found')
   }
 
   res.send({ email: user.email,

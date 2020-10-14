@@ -21,17 +21,18 @@ const useStyles = makeStyles(styles);
 export default function NewExercise(props) {
 
   const { createExercise } = props
+
   const classes = useStyles();
-  const [name, setName] = useState('')
-  const [type, setType] = useState(measureTypes[0])
+  const [name, setName] = useState('New Exercise')
+  const [measureType, setMeasureType] = useState(measureTypes[0])
 
 
   const createNewExercise = () => {
-    createExercise({name, type})
+    createExercise({name, measureType})
   }
 
   const handleChange = (event) => {
-    setType(event.target.value);
+    setMeasureType(event.target.value);
   };
 
   return (
@@ -49,6 +50,7 @@ export default function NewExercise(props) {
                   labelText="Exercise Name"
                   id="exercise-name"
                   inputControl={setName}
+                  inputProps={{value: name}}
                   formControlProps={{
                     fullWidth: true
                   }}
@@ -61,7 +63,7 @@ export default function NewExercise(props) {
                   <InputLabel id="create-exercise-select">Measurement type</InputLabel>
                   <Select id="create-exercise-select"
                           labelId="create-exercise-select"
-                          value={type}
+                          value={measureType}
                           onChange={handleChange}
                   >
                     {measureTypes.map(type => (

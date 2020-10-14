@@ -2,7 +2,7 @@
 import Dashboard from "@material-ui/icons/Dashboard";
 
 import DashboardPage from "views/Dashboard.js";
-import NewExercise from "./views/NewExercise";
+import NewExercise from "./containers/NewExercise";
 import EditExercise from "./views/EditExercise";
 import NewWorkout from "./views/NewWorkout";
 import EditWorkout from "./views/EditWorkout";
