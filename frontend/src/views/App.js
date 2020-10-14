@@ -1,5 +1,7 @@
 import React, { useState, createRef, useEffect } from "react";
 import {Route, Switch, useLocation} from "react-router-dom";
+import ReactNotification from 'react-notifications-component'
+import 'react-notifications-component/dist/theme.css'
 
 import Sidebar from "../components/Sidebar/Sidebar";
 import {authRoutes, dashboardRoutes} from "../routes";
@@ -9,6 +11,7 @@ import Navbar from "../components/Navbars/Navbar";
 import Footer from "../components/Footer/Footer";
 import EmailVerify from '../containers/EmailVerify'
 import { getToken } from "../services/token";
+import { notify } from "../services/notification";
 
 import styles from "assets/jss/material-dashboard-react/layouts/adminStyle.js";
 import {makeStyles} from "@material-ui/core/styles";
@@ -34,7 +37,7 @@ const useStyles = makeStyles(styles);
 
 export default function App(props) {
 
-  const { emailConfirmed, getUser } = props
+  const { emailConfirmed, getUser, error } = props
 
   const location = useLocation()
   // styles
@@ -50,6 +53,10 @@ export default function App(props) {
   };
 
   useEffect(() => {
+    notify({message: error, type: 'danger', title: 'Error'})
+  }, [error])
+
+  useEffect(() => {
       const token = getToken()
     if(token) {
       getUser(token)
@@ -57,26 +64,29 @@ export default function App(props) {
   }, [getUser])
 
   return (
-    <div className={classes.wrapper}>
-      <Sidebar
-        routes={emailConfirmed ? dashboardRoutes : authRoutes}
-        logoText={"Fit Trainer"}
-        logo={logo}
-        image={bgImage}
-        handleDrawerToggle={handleDrawerToggle}
-        open={mobileOpen}
-        color={"blue"}
-      />
-      <div className={classes.mainPanel} ref={mainPanel}>
-        <Navbar
+    <>
+      <ReactNotification />
+      <div className={classes.wrapper}>
+        <Sidebar
           routes={emailConfirmed ? dashboardRoutes : authRoutes}
-          currentRoute={location}
+          logoText={"Fit Trainer"}
+          logo={logo}
+          image={bgImage}
           handleDrawerToggle={handleDrawerToggle}
+          open={mobileOpen}
+          color={"blue"}
         />
-        { <div className={classes.map}>{switchRoutes(emailConfirmed ? dashboardRoutes : authRoutes)}</div> }
-        <Route path='/emailverify' component={EmailVerify}/>
+        <div className={classes.mainPanel} ref={mainPanel}>
+          <Navbar
+            routes={emailConfirmed ? dashboardRoutes : authRoutes}
+            currentRoute={location}
+            handleDrawerToggle={handleDrawerToggle}
+          />
+          { <div className={classes.map}>{switchRoutes(emailConfirmed ? dashboardRoutes : authRoutes)}</div> }
+          <Route path='/emailverify' component={EmailVerify}/>
+        </div>
+        <Footer />
       </div>
-      <Footer />
-    </div>
+    </>
   )
 }
