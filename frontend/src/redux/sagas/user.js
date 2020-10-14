@@ -8,7 +8,7 @@ import {
   GET_USER,
   REGISTER_USER,
   SET_ERROR,
-  VERIFY_USER
+  VERIFY_USER,
 } from "../actions/types";
 
 import http from "../../services/http";
@@ -39,7 +39,7 @@ const registerUser = function* ({ payload }) {
 
 const getUser = function* ({ payload }) {
   try {
-    const response = yield http.post("/api/users", { email: payload.email });
+    const response = yield http.get("/api/users", { data: {email: payload.email},headers: {'authorization' : `Bearer ${payload}`} });
     yield put({ type: SET_USER, payload: response.data });
   } catch (e) {
     yield put({ type: SET_ERROR, payload: e.message });

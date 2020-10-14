@@ -5,5 +5,5 @@ export const saveToken = (token) => {
 }
 
 export const getToken = () => {
-  return localStorage.getItem(appName)
+  return JSON.parse(localStorage.getItem(appName))
 }

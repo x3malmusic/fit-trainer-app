@@ -4,7 +4,7 @@ import {
   LOGIN_USER,
   REGISTER_USER,
   SET_ERROR,
-  VERIFY_USER
+  VERIFY_USER,
 } from "./types";
 
 export const setUser = (user) => ({
@@ -22,11 +22,6 @@ export const registerUser = (data) => ({
   payload: data
 });
 
-export const setError = (err) => ({
-  type: SET_ERROR,
-  payload: err,
-});
-
 export const getUser = (user) => ({
   type: GET_USER,
   payload: user,
@@ -36,6 +31,12 @@ export const verifyUser = (code) => ({
   type: VERIFY_USER,
   payload: code,
 });
+
+export const setError = (err) => ({
+  type: SET_ERROR,
+  payload: err,
+});
+
 
 
 

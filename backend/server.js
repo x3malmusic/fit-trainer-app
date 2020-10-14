@@ -21,7 +21,8 @@ app.use(
   })
 );
 
-app.use("/api", authRoutes, userRoutes);
+app.use("/api", authRoutes);
+app.use("/api/", userRoutes);
 
 app.use(errorHandler);
 

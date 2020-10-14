@@ -57,7 +57,8 @@ export default function App(props) {
   }, [error])
 
   useEffect(() => {
-      const token = getToken()
+    const token = getToken()
+
     if(token) {
       getUser(token)
     }

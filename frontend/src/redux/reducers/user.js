@@ -1,5 +1,4 @@
 const initialState = {
-  token: '',
   email: '',
   workouts: [],
   exercises: [],

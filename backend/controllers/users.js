@@ -3,7 +3,7 @@ import {User} from '../models/User'
 
 
 export const getUser = asyncHandler(async (req, res, next) => {
-  const { email } = req.body
+  const { email } = req.user
 
   const user = await User.findOne({email})
   if(!user) {
