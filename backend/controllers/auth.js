@@ -8,12 +8,16 @@ export const login = asyncHandler(async (req, res, next) => {
   const { email, password } = req.body
   const user = await User.findOne({email})
   if(!user) {
-    next('User not Found')
+    return next('User not Found')
+  }
+
+  if(!user.emailConfirmed) {
+    return next('Please, verify your email')
   }
 
   const isMatch = await bcrypt.compare(password, user.password);
   if(!isMatch) {
-    next('Wrong email or password')
+    return next('Wrong email or password')
   }
 
   const token = jwt.sign({ email, password: user.password }, process.env.JWT_SECRET, {
@@ -26,7 +30,7 @@ export const register = asyncHandler(async (req, res, next) => {
   const { email, password } = req.body
   const candidate = await User.findOne({email})
   if(candidate) {
-    next('User already exist')
+    return next('User already exist')
   }
 
   const hashedPassword = await bcrypt.hash(password, 12);
@@ -41,22 +45,21 @@ export const register = asyncHandler(async (req, res, next) => {
 export const userVerify = asyncHandler(async (req, res, next) => {
   const { email, code } = req.body
 
-  console.log(email, code)
-
   const user = await User.findOne({email})
   if(!user) {
-    next('User not found')
+    return next('User not found')
   }
 
   if(code !== user.verificationCode) {
-    next('Wrong verification code')
+    return next('Wrong verification code')
   }
 
   await user.updateOne({emailConfirmed: true})
+  const updatedUser = await User.findOne({email})
 
-  res.send({ email: user.email,
-    workouts: user.workouts,
-    exercises: user.exercises,
-    emailConfirmed: user.emailConfirmed
+  res.send({ email: updatedUser.email,
+    workouts: updatedUser.workouts,
+    exercises: updatedUser.exercises,
+    emailConfirmed: updatedUser.emailConfirmed
   })
 })
