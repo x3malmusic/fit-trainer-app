@@ -21,7 +21,7 @@ const loginUser = function* ({ payload }) {
     });
     yield saveToken(JSON.stringify(response.data.token))
   } catch (e) {
-    put({ type: SET_ERROR, payload: e.message });
+    yield put({ type: SET_ERROR, payload: e.message });
   }
 };
 
@@ -32,7 +32,7 @@ const registerUser = function* ({ payload }) {
     });
     yield history.push(response.data.link)
   } catch (e) {
-    put({ type: SET_ERROR, payload: e.message });
+    yield put({ type: SET_ERROR, payload: e.message });
   }
 };
 
@@ -42,7 +42,7 @@ const getUser = function* ({ payload }) {
     const response = yield http.post("/api/users", { email: payload.email });
     yield put({ type: SET_USER, payload: response.data });
   } catch (e) {
-    put({ type: SET_ERROR, payload: e.message });
+    yield put({ type: SET_ERROR, payload: e.message });
   }
 };
 
@@ -50,9 +50,10 @@ const verifyUser = function* ({ payload }) {
   try {
     const response = yield http.post("/api/userverify", { email: payload.email, code: payload.code });
     yield put({ type: SET_USER, payload: response.data });
+    yield saveToken(JSON.stringify(response.data.token))
     yield history.push('/dashboard')
   } catch (e) {
-    put({ type: SET_ERROR, payload: e.message });
+    yield put({ type: SET_ERROR, payload: e.message });
   }
 };
 
