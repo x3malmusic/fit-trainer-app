@@ -64,9 +64,17 @@ export default function EmailVerify(props) {
             </GridContainer>
           </CardBody>
           <CardFooter>
-            <Button color="primary" onClick={verifyEmail}>VERIFY EMAIL</Button>
+            <GridContainer>
+              <GridItem xs={12} sm={12} md={6}>
+                <Button color="primary" onClick={verifyEmail}>VERIFY EMAIL</Button>
+              </GridItem>
+            </GridContainer>
           </CardFooter>
-          <NavLink className="primary" style={{marginLeft: 15}} to="/signup">Already have an account? sign in</NavLink>
+          <GridContainer style={{paddingBottom: 15}}>
+            <GridItem xs={12} sm={12} md={6}>
+              <NavLink className="primary" style={{marginLeft: 15}} to="/signup" >Already have an account? sign in</NavLink>
+            </GridItem>
+          </GridContainer>
         </Card>
       </GridItem>
     </GridContainer>

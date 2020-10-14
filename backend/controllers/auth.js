@@ -2,6 +2,8 @@ import {asyncHandler} from '../middlewares/async'
 import {User} from '../models/User'
 import jwt from 'jsonwebtoken'
 import bcrypt from 'bcryptjs'
+import { validationResult } from 'express-validator'
+
 import { USER_EXIST,
   USER_NOT_FOUND,
   USER_NOT_VERIFIED,
@@ -31,7 +33,13 @@ export const login = asyncHandler(async (req, res, next) => {
   res.send({token})
 })
 
-export const register = asyncHandler(async (req, res, next) => {
+export const  register = asyncHandler(async (req, res, next) => {
+
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return next(errors.array()[0].msg)
+  }
+
   const { email, password } = req.body
   const candidate = await User.findOne({email})
   if(candidate) {

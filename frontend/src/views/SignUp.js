@@ -23,9 +23,13 @@ export default function SignUp(props) {
   const [repeatPassword, setRepeatPassword] = useState('')
 
   const register = () => {
-    if(password === repeatPassword) {
-        registerUser({email, password})
-    } else setError('passwords do not match')
+    if(password !== repeatPassword) {
+      setError('Passwords do not match')
+    } else if(password.length < 6) {
+      setError('Password length should be at least 6 symbols')
+    } else if(!email.includes('@')) {
+      setError('Email is not valid')
+    } else registerUser({email, password})
   }
 
   useEffect(() => { setError('') }, [email, password, repeatPassword, setError])
