@@ -1,7 +1,9 @@
+const appName = 'fit-trainer-app'
+
 export const saveToken = (token) => {
-  localStorage.setItem(process.env.REACT_APP_NAME, token)
+  localStorage.setItem(appName, token)
 }
 
 export const getToken = () => {
-  return localStorage.getItem(process.env.REACT_APP_NAME)
+  return localStorage.getItem(appName)
 }
