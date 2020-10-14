@@ -40,11 +40,11 @@ export const register = asyncHandler(async (req, res, next) => {
 
   const hashedPassword = await bcrypt.hash(password, 12);
   const verificationCode = Math.floor(Math.random() * 10000)
-
   const user = new User({ email, password: hashedPassword, exercises: [], workouts: [], verificationCode });
   await user.save()
 
-  res.send({ email, verificationCode })
+  const link = `/emailverify?email=${email}&code=${verificationCode}`
+  res.send({ link, verificationCode })
 })
 
 export const userVerify = asyncHandler(async (req, res, next) => {

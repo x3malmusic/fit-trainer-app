@@ -30,7 +30,7 @@ const registerUser = function* ({ payload }) {
     const response = yield http.post("/api/register", {
       email: payload.email, password: payload.password
     });
-    yield history.push(`/emailverify?email=${response.data.email}&code=${response.data.verificationCode}`)
+    yield history.push(response.data.link)
   } catch (e) {
     put({ type: SET_ERROR, payload: e.message });
   }

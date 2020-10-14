@@ -21,8 +21,6 @@ export default function EmailVerify(props) {
 
   const { location, verifyUser } = props
   const queryString = query.parse(location.search)
-  console.log(queryString)
-
 
   const classes = useStyles();
 

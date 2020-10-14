@@ -15,7 +15,7 @@ const useStyles = makeStyles(styles);
 
 export default function SignIn(props) {
 
-  const { loginUser, error } = props
+  const { loginUser } = props
   const classes = useStyles();
 
   const [email, setEmail] = useState('')
