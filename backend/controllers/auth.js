@@ -2,22 +2,27 @@ import {asyncHandler} from '../middlewares/async'
 import {User} from '../models/User'
 import jwt from 'jsonwebtoken'
 import bcrypt from 'bcryptjs'
+import { USER_EXIST,
+  USER_NOT_FOUND,
+  USER_NOT_VERIFIED,
+  WRONG_EMAIL_PASSWORD,
+  WRONG_VERIFICATION_CODE } from '../helpers/errors'
 
 
 export const login = asyncHandler(async (req, res, next) => {
   const { email, password } = req.body
   const user = await User.findOne({email})
   if(!user) {
-    return next('User not Found')
+    return next(USER_NOT_FOUND)
   }
 
   if(!user.emailConfirmed) {
-    return next('Please, verify your email')
+    return next(USER_NOT_VERIFIED)
   }
 
   const isMatch = await bcrypt.compare(password, user.password);
   if(!isMatch) {
-    return next('Wrong email or password')
+    return next(WRONG_EMAIL_PASSWORD)
   }
 
   const token = jwt.sign({ email, password: user.password }, process.env.JWT_SECRET, {
@@ -30,7 +35,7 @@ export const register = asyncHandler(async (req, res, next) => {
   const { email, password } = req.body
   const candidate = await User.findOne({email})
   if(candidate) {
-    return next('User already exist')
+    return next(USER_EXIST)
   }
 
   const hashedPassword = await bcrypt.hash(password, 12);
@@ -47,11 +52,11 @@ export const userVerify = asyncHandler(async (req, res, next) => {
 
   const user = await User.findOne({email})
   if(!user) {
-    return next('User not found')
+    return next(USER_NOT_FOUND)
   }
 
   if(code !== user.verificationCode) {
-    return next('Wrong verification code')
+    return next(WRONG_VERIFICATION_CODE)
   }
 
   await user.updateOne({emailConfirmed: true})
