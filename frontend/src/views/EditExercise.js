@@ -11,7 +11,6 @@ import {styles} from "../assets/jss/material-dashboard-react/views/authStyle";
 import { swap } from "../helper/swapElements";
 
 import Exercise from "../components/Exercise/Exercise";
-import {loginUser} from "../redux/actions/auth";
 
 
 const useStyles = makeStyles(styles);

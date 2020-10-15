@@ -24,7 +24,7 @@ const createExercise = function* ({ payload }) {
 
 const deleteExercise = function* ({ payload }) {
   try {
-    // yield http.delete(`/api/exercises/${payload}`, {headers: {'authorization' : `Bearer ${getToken()}`}});
+    yield http.delete(`/api/exercises/${payload}`, {headers: {'authorization' : `Bearer ${getToken()}`}});
     yield put({ type: DELETE_EXERCISE_STATE, payload });
   } catch (e) {
     yield put({ type: SET_ERROR, payload: e.response.data });

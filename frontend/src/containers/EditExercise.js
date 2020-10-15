@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import EditExercise from "../views/EditExercise";
-import { updateExercises, deleteExercise } from "../redux/actions/workouts";
+import { updateExercises, deleteExercise } from "../redux/actions/exercises";
 
 //update exercises
 

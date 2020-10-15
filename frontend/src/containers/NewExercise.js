@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import NewExercise from "../views/NewExercise";
-import { createExercise } from "../redux/actions/workouts";
+import { createExercise } from "../redux/actions/exercises";
 
 
 const mapDispatchToProps = (dispatch) => ({
