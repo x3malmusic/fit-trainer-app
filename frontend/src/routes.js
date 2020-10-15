@@ -3,7 +3,7 @@ import Dashboard from "@material-ui/icons/Dashboard";
 
 import DashboardPage from "views/Dashboard.js";
 import NewExercise from "./containers/NewExercise";
-import EditExercise from "./views/EditExercise";
+import EditExercise from "./containers/EditExercise";
 import NewWorkout from "./views/NewWorkout";
 import EditWorkout from "./views/EditWorkout";
 import SignIn from "./containers/SignIn";
@@ -34,25 +34,25 @@ export const dashboardRoutes = [
   },
   {
     path: "/newexercise",
-    name: "NewExercise",
+    name: "New Exercise",
     icon: Dashboard,
     component: NewExercise,
   },
   {
     path: "/editexercise",
-    name: "EditExercise",
+    name: "Edit Exercise",
     icon: Dashboard,
     component: EditExercise,
   },
   {
     path: "/neworkout",
-    name: "NewWorkout",
+    name: "New Workout",
     icon: Dashboard,
     component: NewWorkout,
   },
   {
     path: "/editworkout",
-    name: "EditWorkout",
+    name: "Edit Workout",
     icon: Dashboard,
     component: EditWorkout,
   },
