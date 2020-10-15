@@ -28,7 +28,7 @@ export default (state = initialState, action) => {
         ...state,
         exercises: [...state.exercises, action.payload],
       };
-    case "UPDATE_EXERCISE":
+    case "UPDATE_EXERCISE_STATE":
       return {
         ...state,
         exercises: [...action.payload],
