@@ -37,7 +37,7 @@ export default function NewExercise(props) {
 
   return (
     <GridContainer>
-      <GridItem xs={12} sm={12} md={6 }>
+      <GridItem xs={12} sm={12} md={6}>
         <Card>
           <CardHeader color="primary">
             <h4 className={classes.cardTitleWhite}>Create new exercise</h4>
