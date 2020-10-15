@@ -8,4 +8,5 @@ export const SET_ERROR = "SET_ERROR";
 
 export const NEW_EXERCISE = "NEW_EXERCISE";
 export const ADD_EXERCISE = "ADD_EXERCISE";
+export const UPDATE_EXERCISE = "UPDATE_EXERCISE";
 

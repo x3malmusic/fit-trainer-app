@@ -23,8 +23,6 @@ export default function EditExercise(props) {
   const classes = useStyles();
 
   const moveUp = (index) => {
-    const nextElem = index - 1
-    if(nextElem < 0) return
     swap(exercises, index, false)
     updateExercises(exercises)
   }

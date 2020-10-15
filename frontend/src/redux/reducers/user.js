@@ -28,6 +28,11 @@ export default (state = initialState, action) => {
         ...state,
         exercises: [...state.exercises, action.payload],
       };
+    case "UPDATE_EXERCISE":
+      return {
+        ...state,
+        exercises: [...action.payload],
+      };
     default:
       return state;
   }

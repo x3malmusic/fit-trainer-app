@@ -5,7 +5,7 @@ import {User} from '../models/User'
 export const getUser = asyncHandler(async (req, res, next) => {
   const { email } = req.user
 
-  const user = await User.findOne({email}).populate('exercises.exercise');
+  const user = await User.findOne({email}).populate('exercises');
   if(!user) {
     return next('User not Found')
   }
