@@ -33,6 +33,11 @@ export default (state = initialState, action) => {
         ...state,
         exercises: [...action.payload],
       };
+    case "DELETE_EXERCISE_STATE":
+      return {
+        ...state,
+        exercises: state.exercises.filter(e => e._id !== action.payload),
+      };
     default:
       return state;
   }

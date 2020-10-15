@@ -32,7 +32,7 @@ export default function Exercise(props) {
   }
 
   const handleDeleteExercise = () => {
-    deleteExercise(index)
+    deleteExercise(exercise._id)
   }
 
 
@@ -72,7 +72,7 @@ export default function Exercise(props) {
             </Button>
           </GridItem>
           <GridItem xs={12} sm={12} md={1}>
-            <Button color="warning" onClick={deleteExercise}>
+            <Button color="warning" onClick={handleDeleteExercise}>
               <CancelIcon />
             </Button>
           </GridItem>

@@ -19,7 +19,7 @@ const useStyles = makeStyles(styles);
 
 export default function EditExercise(props) {
 
-  const { exercises, updateExercises } = props
+  const { exercises, updateExercises, deleteExercise } = props
   const classes = useStyles();
 
   const moveUp = (index) => {
@@ -30,10 +30,6 @@ export default function EditExercise(props) {
   const moveDown = (index) => {
     swap(exercises, index, true)
     updateExercises(exercises)
-  }
-
-  const deleteExercise = (id) => {
-
   }
 
   const updateAllExercises = () => {
