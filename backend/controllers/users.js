@@ -13,6 +13,7 @@ export const getUser = asyncHandler(async (req, res, next) => {
   res.send({ email: user.email,
     workouts: user.workouts,
     exercises: user.exercises,
-    emailConfirmed: user.emailConfirmed
+    emailConfirmed: user.emailConfirmed,
+    userId: user.id
   })
 })

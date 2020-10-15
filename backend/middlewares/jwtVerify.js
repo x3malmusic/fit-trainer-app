@@ -12,7 +12,7 @@ export const verifyToken = asyncHandler(async (req, res, next) => {
         return next(AUTHORIZATION_DENIED)
       }
 
-      req.user = { email: user.email };
+      req.user = { email: user.email, userId: user.userId };
       next();
     });
 });
