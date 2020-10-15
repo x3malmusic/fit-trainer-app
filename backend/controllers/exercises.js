@@ -15,3 +15,16 @@ export const createExercise = asyncHandler(async (req, res, next) => {
 
   res.status(200).send()
 })
+
+
+export const deleteExercise = asyncHandler(async (req, res, next) => {
+  const { email } = req.user
+  const { id } = req.params
+
+  await Exercise.findByIdAndDelete(id)
+  const user = await User.findOne({email})
+  user.exercises.pull({_id: id})
+  user.save()
+
+  res.status(200).send()
+})
