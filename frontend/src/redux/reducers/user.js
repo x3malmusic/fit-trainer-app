@@ -1,5 +1,6 @@
 const initialState = {
   email: '',
+  userId: '',
   workouts: [],
   exercises: [],
   emailConfirmed: false,
@@ -15,7 +16,7 @@ export default (state = initialState, action) => {
         workouts: action.payload.workouts,
         exercises: action.payload.exercises,
         emailConfirmed: action.payload.emailConfirmed,
-        token: action.payload.token
+        userId: action.payload.userId
       };
     case "SET_ERROR":
       return {

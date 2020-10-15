@@ -9,7 +9,7 @@ const createExercise = function* ({ payload }) {
     yield http.post("/api/exercises", { name: payload.name, measureType: payload.measureType }, {headers: {'authorization' : `Bearer ${getToken()}`}});
     yield put({ type: ADD_EXERCISE, payload });
   } catch (e) {
-    yield put({ type: SET_ERROR, payload: e.message });
+    yield put({ type: SET_ERROR, payload: e.response.data });
   }
 };
 
