@@ -37,7 +37,7 @@ const useStyles = makeStyles(styles);
 
 export default function App(props) {
 
-  const { emailConfirmed, getUser, error } = props
+  const { emailConfirmed, getUser, error, logoutUser } = props
 
   const location = useLocation()
   // styles
@@ -60,9 +60,9 @@ export default function App(props) {
     const token = getToken()
 
     if(token) {
-      getUser(token)
+      getUser()
     }
-  }, [getUser])
+  }, [])
 
   return (
     <>
@@ -82,6 +82,7 @@ export default function App(props) {
             routes={emailConfirmed ? dashboardRoutes : authRoutes}
             currentRoute={location}
             handleDrawerToggle={handleDrawerToggle}
+            logout={logoutUser}
           />
           { <div className={classes.map}>{switchRoutes(emailConfirmed ? dashboardRoutes : authRoutes)}</div> }
           <Route path='/emailverify' component={EmailVerify}/>

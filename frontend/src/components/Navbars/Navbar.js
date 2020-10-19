@@ -18,6 +18,8 @@ const useStyles = makeStyles(styles);
 export default function Header(props) {
   const classes = useStyles();
 
+  const { logout } = props
+
   function makeBrand() {
     let name;
     props.routes.map(prop => {
@@ -41,7 +43,7 @@ export default function Header(props) {
           </Button>
         </div>
         <Hidden smDown implementation="css">
-           <AdminNavbarLinks />
+           <AdminNavbarLinks logout={logout}/>
         </Hidden>
 
       </Toolbar>

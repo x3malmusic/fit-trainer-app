@@ -7,3 +7,8 @@ export const saveToken = (token) => {
 export const getToken = () => {
   return JSON.parse(localStorage.getItem(appName))
 }
+
+export const deleteToken = () => {
+  localStorage.removeItem(appName)
+}
+

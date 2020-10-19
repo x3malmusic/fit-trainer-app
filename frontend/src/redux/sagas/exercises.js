@@ -8,7 +8,6 @@ import {
   SET_ERROR,
   DELETE_EXERCISE,
   DELETE_EXERCISE_STATE,
-  UPDATE_EXERCISE_STATE,
   UPDATE_EXERCISE
 } from "../actions/types";
 

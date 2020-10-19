@@ -5,6 +5,7 @@ import {
   REGISTER_USER,
   SET_ERROR,
   VERIFY_USER,
+  LOGOUT_USER
 } from "./types";
 
 export const setUser = (user) => ({
@@ -30,6 +31,10 @@ export const getUser = (user) => ({
 export const verifyUser = (code) => ({
   type: VERIFY_USER,
   payload: code,
+});
+
+export const logoutUser = () => ({
+  type: LOGOUT_USER,
 });
 
 export const setError = (err) => ({

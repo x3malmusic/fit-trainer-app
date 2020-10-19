@@ -1,5 +1,5 @@
 import { takeLatest, put } from "redux-saga/effects";
-import { saveToken } from '../../services/token'
+import {deleteToken, getToken, saveToken} from '../../services/token'
 import history from "../../services/history";
 
 import {
@@ -9,6 +9,7 @@ import {
   REGISTER_USER,
   SET_ERROR,
   VERIFY_USER,
+  LOGOUT_USER
 } from "../actions/types";
 
 import http from "../../services/http";
@@ -20,6 +21,8 @@ const loginUser = function* ({ payload }) {
       email: payload.email, password: payload.password
     });
     yield saveToken(JSON.stringify(response.data.token))
+    yield history.push('/dashboard')
+    yield put({type: GET_USER })
   } catch (e) {
     yield put({ type: SET_ERROR, payload: e.response.data });
   }
@@ -37,11 +40,12 @@ const registerUser = function* ({ payload }) {
 };
 
 
-const getUser = function* ({ payload }) {
+const getUser = function* () {
   try {
-    const response = yield http.get("/api/users", { data: {email: payload.email},headers: {'authorization' : `Bearer ${payload}`} });
+    const response = yield http.get("/api/users", { headers: {'authorization' : `Bearer ${getToken()}`} });
     yield put({ type: SET_USER, payload: response.data });
   } catch (e) {
+    console.log(e)
     yield put({ type: SET_ERROR, payload: e.response.data });
   }
 };
@@ -57,10 +61,17 @@ const verifyUser = function* ({ payload }) {
   }
 };
 
+const logoutUser = function* () {
+  yield deleteToken()
+  yield put({ type: SET_USER, payload: {}});
+  yield history.push('/signin')
+};
+
 
 export default [
   takeLatest(LOGIN_USER, loginUser),
   takeLatest(REGISTER_USER, registerUser),
   takeLatest(GET_USER, getUser),
   takeLatest(VERIFY_USER, verifyUser),
+  takeLatest(LOGOUT_USER, logoutUser),
 ];
