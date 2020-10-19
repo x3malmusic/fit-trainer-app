@@ -62,7 +62,7 @@ export default function App(props) {
     if(token) {
       getUser()
     }
-  }, [])
+  }, [getUser])
 
   return (
     <>
