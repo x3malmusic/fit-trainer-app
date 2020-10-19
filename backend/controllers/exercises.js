@@ -10,8 +10,8 @@ export const createExercise = asyncHandler(async (req, res, next) => {
   await exercise.save()
 
   const user = await User.findOne({email})
-  user.exercises.push(exercise.id)
-  user.save()
+  await user.exercises.push(exercise.id)
+  await user.save()
 
   res.status(200).send()
 })
@@ -23,8 +23,22 @@ export const deleteExercise = asyncHandler(async (req, res, next) => {
 
   await Exercise.findByIdAndDelete(id)
   const user = await User.findOne({email})
-  user.exercises.pull({_id: id})
-  user.save()
+  await user.exercises.pull({_id: id})
+  await user.save()
 
   res.status(200).send()
 })
+
+
+export const updateExercise = asyncHandler(async (req, res, next) => {
+  const { userId } = req.user
+  const { exercises } = req.body
+
+  for await (let exercise of exercises) {
+    await Exercise.findOne({_id: exercise._id}).updateOne({name: exercise.name, measureType: exercise.measureType})
+  }
+
+  res.status(200).send()
+})
+
+
