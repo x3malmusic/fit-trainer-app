@@ -20,7 +20,14 @@ const useStyles = makeStyles(styles);
 
 export default function Exercise(props) {
 
-  const { exercise, moveUp, moveDown, deleteExercise, index } = props
+  const { exercise,
+    moveUp,
+    moveDown,
+    deleteExercise,
+    index,
+    updateExerciseName,
+    updateExerciseMeasureType
+  } = props
   const classes = useStyles();
 
   const handleMoveUp = () => {
@@ -43,6 +50,8 @@ export default function Exercise(props) {
               labelText="Exercise name"
               id={`exercise-name${exercise._id}`}
               inputProps={{ value:exercise.name }}
+              index={index}
+              inputControl={updateExerciseName}
               formControlProps={{
                 fullWidth: true
               }}
@@ -54,6 +63,7 @@ export default function Exercise(props) {
               <Select id="edit-exercise-select"
                       labelId="edit-exercise-select"
                       value={exercise.measureType}
+                      onChange={e => updateExerciseMeasureType(e.target.value, index)}
               >
                 {measureTypes.map(type => (
                   <MenuItem value={type} key={type}>{type}</MenuItem>

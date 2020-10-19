@@ -1,4 +1,9 @@
-import { NEW_EXERCISE, ADD_EXERCISE, UPDATE_EXERCISE, DELETE_EXERCISE } from './types'
+import { NEW_EXERCISE,
+  ADD_EXERCISE,
+  UPDATE_EXERCISE,
+  DELETE_EXERCISE,
+  UPDATE_EXERCISE_STATE
+} from './types'
 
 export const createExercise = (exercise) => ({
   type: NEW_EXERCISE,
@@ -12,6 +17,11 @@ export const addExercise = (exercise) => ({
 
 export const updateExercises = (exercises) => ({
   type: UPDATE_EXERCISE,
+  payload: exercises,
+});
+
+export const updateExercisesState = (exercises) => ({
+  type: UPDATE_EXERCISE_STATE,
   payload: exercises,
 });
 

@@ -18,21 +18,31 @@ const useStyles = makeStyles(styles);
 
 export default function EditExercise(props) {
 
-  const { exercises, updateExercises, deleteExercise } = props
+  const { exercises, updateExercises, deleteExercise, updateExercisesState } = props
   const classes = useStyles();
 
   const moveUp = (index) => {
     swap(exercises, index, false)
-    updateExercises(exercises)
+    updateExercisesState(exercises)
   }
 
   const moveDown = (index) => {
     swap(exercises, index, true)
-    updateExercises(exercises)
+    updateExercisesState(exercises)
+  }
+
+  const updateExerciseName = (value, index) => {
+    exercises[index].name = value
+    updateExercisesState(exercises)
+  }
+
+  const updateExerciseMeasureType = (value, index) => {
+    exercises[index].measureType = value
+    updateExercisesState(exercises)
   }
 
   const updateAllExercises = () => {
-    //update exercises
+    updateExercises(exercises)
   }
 
   return (
@@ -52,6 +62,8 @@ export default function EditExercise(props) {
                 moveUp={moveUp}
                 moveDown={moveDown}
                 deleteExercise={deleteExercise}
+                updateExerciseName={updateExerciseName}
+                updateExerciseMeasureType={updateExerciseMeasureType}
               />
             )}
           </CardBody>

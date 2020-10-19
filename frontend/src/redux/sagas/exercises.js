@@ -33,8 +33,7 @@ const deleteExercise = function* ({ payload }) {
 
 const updateExercise = function* ({ payload }) {
   try {
-    // yield http.put(`/api/exercises/${payload}`, {headers: {'authorization' : `Bearer ${getToken()}`}});
-    yield put({ type: UPDATE_EXERCISE_STATE, payload });
+    yield http.put("/api/exercises",{exercises: payload}, {headers: {'authorization' : `Bearer ${getToken()}`}});
   } catch (e) {
     yield put({ type: SET_ERROR, payload: e.response.data });
   }
