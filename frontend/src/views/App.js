@@ -15,23 +15,8 @@ import { notify } from "../services/notification";
 
 import styles from "assets/jss/material-dashboard-react/layouts/adminStyle.js";
 import {makeStyles} from "@material-ui/core/styles";
+import { switchRoutes } from "../helper/switchRoute";
 
-
-const switchRoutes = (routes) => {
-  return (
-    <Switch>
-      {routes.map((prop, key) => {
-        return (
-          <Route
-            path={prop.path}
-            component={prop.component}
-            key={key}
-          />
-        );
-      })}
-    </Switch>
-  )
-};
 
 const useStyles = makeStyles(styles);
 
@@ -40,8 +25,8 @@ export default function App(props) {
   const { emailConfirmed, getUser, error, logoutUser, email } = props
 
   const location = useLocation()
-  // styles
   const classes = useStyles();
+  const currentRoutes = emailConfirmed ? dashboardRoutes : authRoutes
   // ref to help us initialize PerfectScrollbar on windows devices
   const mainPanel = createRef();
   // states and functions
@@ -69,7 +54,7 @@ export default function App(props) {
       <ReactNotification />
       <div className={classes.wrapper}>
         <Sidebar
-          routes={emailConfirmed ? dashboardRoutes : authRoutes}
+          routes={currentRoutes}
           logoText={"Fit Trainer"}
           logo={logo}
           image={bgImage}
@@ -80,16 +65,16 @@ export default function App(props) {
         <div className={classes.mainPanel} ref={mainPanel}>
           <div>
             <Navbar
-              routes={emailConfirmed ? dashboardRoutes : authRoutes}
+              routes={currentRoutes}
               currentRoute={location}
               handleDrawerToggle={handleDrawerToggle}
               logout={logoutUser}
               userEmail={email}
             />
-            { <div className={classes.map}>{switchRoutes(emailConfirmed ? dashboardRoutes : authRoutes)}</div> }
+            { <div className={classes.map}>{switchRoutes(currentRoutes)}</div> }
             <Route path='/emailverify' component={EmailVerify}/>
           </div>
-          <Footer />
+          <Footer routes={currentRoutes}/>
         </div>
       </div>
     </>
