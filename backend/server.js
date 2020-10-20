@@ -5,6 +5,7 @@ import { errorHandler } from "./middlewares/error";
 import authRoutes from "./routes/authRoutes";
 import userRoutes from "./routes/userRoutes";
 import exerciseRoutes from './routes/exerciseRoutes'
+import workoutRoutes from './routes/workoutRoutes'
 import { connectDB } from "./database";
 
 const app = express();
@@ -22,7 +23,7 @@ app.use(
   })
 );
 
-app.use("/api", authRoutes, userRoutes, exerciseRoutes);
+app.use("/api", authRoutes, userRoutes, exerciseRoutes, workoutRoutes);
 
 app.use(errorHandler);
 
