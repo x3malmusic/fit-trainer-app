@@ -1,9 +1,10 @@
 import { all } from "redux-saga/effects";
 import userSagas from "./user";
-import workoutSagas from "./exercises";
+import exercisesSagas from "./exercises";
+import workoutSagas from "./workout";
 
 function* rootSaga() {
-  return yield all([...userSagas, ...workoutSagas]);
+  return yield all([...userSagas, ...exercisesSagas, ...workoutSagas]);
 }
 
 export default rootSaga;
