@@ -32,15 +32,18 @@ const headerLinksStyle = theme => ({
     margin: "0px"
   },
   buttonLink: {
+    backgroundColor: '#ccc',
+    borderRadius: '50%',
+    marginLeft: 15,
     [theme.breakpoints.down("sm")]: {
       display: "flex",
       margin: "10px 15px 0",
       width: "-webkit-fill-available",
       "& svg": {
-        width: "24px",
-        height: "30px",
+        width: "40px",
+        height: "40px",
         marginRight: "15px",
-        marginLeft: "-15px"
+        marginLeft: "-15px",
       },
       "& .fab,& .fas,& .far,& .fal,& .material-icons": {
         fontSize: "24px",
@@ -48,7 +51,7 @@ const headerLinksStyle = theme => ({
         width: "24px",
         height: "30px",
         marginRight: "15px",
-        marginLeft: "-15px"
+        marginLeft: "-15px",
       },
       "& > span": {
         justifyContent: "flex-start",

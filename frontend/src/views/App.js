@@ -37,7 +37,7 @@ const useStyles = makeStyles(styles);
 
 export default function App(props) {
 
-  const { emailConfirmed, getUser, error, logoutUser } = props
+  const { emailConfirmed, getUser, error, logoutUser, email } = props
 
   const location = useLocation()
   // styles
@@ -78,16 +78,19 @@ export default function App(props) {
           color={"blue"}
         />
         <div className={classes.mainPanel} ref={mainPanel}>
-          <Navbar
-            routes={emailConfirmed ? dashboardRoutes : authRoutes}
-            currentRoute={location}
-            handleDrawerToggle={handleDrawerToggle}
-            logout={logoutUser}
-          />
-          { <div className={classes.map}>{switchRoutes(emailConfirmed ? dashboardRoutes : authRoutes)}</div> }
-          <Route path='/emailverify' component={EmailVerify}/>
+          <div>
+            <Navbar
+              routes={emailConfirmed ? dashboardRoutes : authRoutes}
+              currentRoute={location}
+              handleDrawerToggle={handleDrawerToggle}
+              logout={logoutUser}
+              userEmail={email}
+            />
+            { <div className={classes.map}>{switchRoutes(emailConfirmed ? dashboardRoutes : authRoutes)}</div> }
+            <Route path='/emailverify' component={EmailVerify}/>
+          </div>
+          <Footer />
         </div>
-        <Footer />
       </div>
     </>
   )

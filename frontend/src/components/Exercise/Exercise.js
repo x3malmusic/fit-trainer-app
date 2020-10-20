@@ -13,6 +13,7 @@ import FormControl from "@material-ui/core/FormControl";
 import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
 import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
 import CancelIcon from '@material-ui/icons/Cancel';
+import Divider from '../../components/Divider/Divider'
 
 
 const useStyles = makeStyles(styles);
@@ -86,6 +87,7 @@ export default function Exercise(props) {
               <CancelIcon />
             </Button>
           </GridItem>
+          <Divider />
         </GridContainer>
   )
 

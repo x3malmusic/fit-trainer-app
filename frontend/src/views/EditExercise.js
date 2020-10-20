@@ -47,7 +47,7 @@ export default function EditExercise(props) {
 
   return (
     <GridContainer>
-      <GridItem xs={12} sm={12} md={8}>
+      <GridItem xs={12} sm={12} md={10}>
         <Card>
           <CardHeader color="primary">
             <h2 className={classes.cardTitleWhite}>Edit exercises</h2>

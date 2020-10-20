@@ -7,18 +7,21 @@ import {
 const appStyle = theme => ({
   wrapper: {
     position: "relative",
-    top: "0",
-    height: "97vh"
+    display: 'flex',
+    justifyContent: 'flex-end',
+    height: '97vh',
   },
   mainPanel: {
     [theme.breakpoints.up("md")]: {
       width: `calc(100% - ${drawerWidth}px)`
     },
+    display: 'flex',
+    flexDirection: 'column',
     overflow: "auto",
     position: "relative",
-    float: "right",
     ...transition,
-    maxHeight: "100%",
+    justifyContent: 'space-between',
+    height: '100%',
     width: "100%",
     overflowScrolling: "touch"
   },

@@ -18,7 +18,7 @@ const useStyles = makeStyles(styles);
 export default function Header(props) {
   const classes = useStyles();
 
-  const { logout } = props
+  const { logout, userEmail } = props
 
   function makeBrand() {
     let name;
@@ -38,10 +38,11 @@ export default function Header(props) {
     <AppBar className={classes.appBar + appBarClasses}>
       <Toolbar className={classes.container}>
         <div className={classes.flex}>
-          <Button color="transparent" href="#" className={classes.title}>
+          <Button color='transparent' className={classes.title}>
             {makeBrand()}
           </Button>
         </div>
+        {userEmail && <p>Welcome, <strong>{userEmail}</strong></p>}
         <Hidden smDown implementation="css">
            <AdminNavbarLinks logout={logout}/>
         </Hidden>

@@ -2,8 +2,8 @@ import { connect } from "react-redux";
 import App from "../views/App";
 import { getUser, logoutUser } from "../redux/actions/auth";
 
-const mapStateToProps = ({user: { emailConfirmed, error }}) => ({
-  emailConfirmed, error
+const mapStateToProps = ({user: { email, emailConfirmed, error }}) => ({
+  emailConfirmed, error, email
 });
 
 const mapDispatchToProps = (dispatch) => ({

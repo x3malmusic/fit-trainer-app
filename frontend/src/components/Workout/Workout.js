@@ -10,6 +10,7 @@ import ArrowUpwardIcon from "@material-ui/icons/ArrowUpward";
 import ArrowDownwardIcon from "@material-ui/icons/ArrowDownward";
 import CancelIcon from "@material-ui/icons/Cancel";
 import GridContainer from "../Grid/GridContainer";
+import Divider from '../../components/Divider/Divider';
 import {makeStyles} from "@material-ui/core/styles";
 import {styles} from "../../assets/jss/material-dashboard-react/views/authStyle";
 
@@ -116,6 +117,7 @@ export default function Workout(props) {
           <CancelIcon />
         </Button>
       </GridItem>
+      <Divider />
     </GridContainer>
   )
 }
