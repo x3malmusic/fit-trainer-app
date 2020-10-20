@@ -38,6 +38,11 @@ export default (state = initialState, action) => {
         ...state,
         exercises: state.exercises.filter(e => e._id !== action.payload),
       };
+    case "ADD_WORKOUT_STATE":
+      return {
+        ...state,
+        workouts: [...state.workouts, action.payload],
+      };
     default:
       return state;
   }
