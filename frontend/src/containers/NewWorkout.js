@@ -1,13 +1,13 @@
 import { connect } from "react-redux";
 import NewWorkout from "../views/NewWorkout";
-// import { loginUser } from "../redux/actions/auth";
+import { addWorkout } from "../redux/actions/workout";
 
 const mapStateToProps = ({user: { exercises }}) => ({
   exercises
 });
 
-// const mapDispatchToProps = (dispatch) => ({
-//   loginUser: (data) => dispatch(loginUser(data)),
-// });
+const mapDispatchToProps = (dispatch) => ({
+  addWorkout: (data) => dispatch(addWorkout(data)),
+});
 
-export default connect(mapStateToProps, null)(NewWorkout);
+export default connect(mapStateToProps, mapDispatchToProps)(NewWorkout);

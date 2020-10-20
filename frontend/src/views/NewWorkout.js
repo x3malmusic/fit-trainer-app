@@ -16,7 +16,7 @@ const useStyles = makeStyles(styles);
 
 export default function NewWorkout(props) {
 
-  const { exercises } = props
+  const { exercises, addWorkout } = props
   const [workout, setWorkout] = useState(() => {
     if (exercises.length) return [{...exercises[0], repeats: 0, measurement: 0}]
     else return []
@@ -37,7 +37,7 @@ export default function NewWorkout(props) {
   }
 
   const createWorkout = (value, index) => {
-    //create new workout
+    addWorkout(workout)
   }
 
   const changeExercise = (id, index) => {
