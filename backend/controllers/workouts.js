@@ -24,3 +24,14 @@ export const createWorkout = asyncHandler(async (req, res, next) => {
 
   res.status(200).send()
 })
+
+
+export const updateWorkout = asyncHandler(async (req, res, next) => {
+  const { email, userId } = req.user
+  const { exercises } = req.body
+  const { id } = req.params
+
+  await Workout.findOne({_id: id}).updateOne({exercises})
+
+  res.status(200).send()
+})
