@@ -16,7 +16,7 @@ const useStyles = makeStyles(styles);
 
 export default function EditWorkout(props) {
 
-  const { exercises, workouts } = props
+  const { exercises, workouts, updateWorkout } = props
   const [workout, setWorkout] = useState(() => {
     if (workouts.length) return [...workouts[0].exercises]
     else return []
@@ -35,8 +35,8 @@ export default function EditWorkout(props) {
     setWorkout([...workout])
   }
 
-  const updateWorkout = (value, index) => {
-    //updateWorkout
+  const changeWorkout = () => {
+    updateWorkout({ workouts, _id: workouts[0]._id, exercises: workout })
   }
 
   const changeExercise = (id, index) => {
@@ -99,7 +99,7 @@ export default function EditWorkout(props) {
           <CardFooter>
             <GridContainer>
               <GridItem xs={12} sm={12} md={6}>
-                <Button color="primary" onClick={updateWorkout}>UPDATE WORKOUT</Button>
+                <Button color="primary" onClick={changeWorkout}>UPDATE WORKOUT</Button>
               </GridItem>
             </GridContainer>
           </CardFooter>
