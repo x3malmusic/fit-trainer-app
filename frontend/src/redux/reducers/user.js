@@ -46,7 +46,7 @@ export default (state = initialState, action) => {
     case "UPDATE_WORKOUT_STATE":
       return {
         ...state,
-          //update workout
+        workouts:  action.payload,
       };
     default:
       return state;
