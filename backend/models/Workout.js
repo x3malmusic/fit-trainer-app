@@ -1,9 +1,15 @@
 import mongoose, { Schema, model } from "mongoose";
 
 const workoutSchema = new Schema({
-  exercises: [{type: mongoose.Types.ObjectId, ref: "WorkoutExercise" }],
   owner: {type: mongoose.Types.ObjectId, ref: "User" },
-  date: { type: String }
+  date: { type: String },
+  exercises: [
+      {
+        exercise: {type: mongoose.Types.ObjectId, ref: "Exercise" },
+        repeats: { type: String },
+        measurement: { type: String }
+      }
+    ]
 });
 
 export const Workout = model("Workout", workoutSchema);

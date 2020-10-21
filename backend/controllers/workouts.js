@@ -8,19 +8,14 @@ import exercises from "../../frontend/src/redux/sagas/exercises";
 export const createWorkout = asyncHandler(async (req, res, next) => {
   const { email, userId } = req.user
   const { newWorkout } = req.body
-  const exercises = []
-  const workout = new Workout({date: Date.now(), owner: userId})
 
-  for await (let exercise of newWorkout) {
-    const workoutExercise = new WorkoutExercise({
-      exercise: exercise._id,
-      measurement: exercise.measurement,
-      repeats: exercise.repeats,
-      owner: workout.id
-    })
-    await workoutExercise.save()
-    await workout.exercises.push(workoutExercise.id)
-  }
+  const exercises = newWorkout.map(exercise => ({
+    exercise: exercise._id,
+    measurement: exercise.measurement,
+    repeats: exercise.repeats,
+  }))
+
+  const workout = new Workout({date: Date.now(), owner: userId, exercises })
   await workout.save()
 
   const user = await User.findOne({email})

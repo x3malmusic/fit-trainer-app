@@ -27,7 +27,7 @@ export const login = asyncHandler(async (req, res, next) => {
     return next(WRONG_EMAIL_PASSWORD)
   }
 
-  const token = jwt.sign({ email }, process.env.JWT_SECRET, {
+  const token = jwt.sign({ email, userId: user.id }, process.env.JWT_SECRET, {
     expiresIn: "24h",
   });
   res.send({token})
@@ -70,7 +70,7 @@ export const userVerify = asyncHandler(async (req, res, next) => {
   await user.updateOne({emailConfirmed: true})
   const updatedUser = await User.findOne({email})
 
-  const token = jwt.sign({ email, userId: user.id }, process.env.JWT_SECRET, {
+  const token = jwt.sign({ userId: user.id, email,  }, process.env.JWT_SECRET, {
     expiresIn: "24h",
   });
 
