@@ -1,9 +1,15 @@
 import {
-  ADD_WORKOUT
+  ADD_WORKOUT,
+  UPDATE_WORKOUT
 } from "./types";
 
 
-export const addWorkout = (exercise) => ({
+export const addWorkout = (workout) => ({
   type: ADD_WORKOUT,
-  payload: exercise,
+  payload: workout,
+});
+
+export const updateWorkout = (workout) => ({
+  type: UPDATE_WORKOUT,
+  payload: workout,
 });

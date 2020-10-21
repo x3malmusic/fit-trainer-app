@@ -1,5 +1,5 @@
 import React, { useState, createRef, useEffect } from "react";
-import {Route, Switch, useLocation} from "react-router-dom";
+import {Route, useLocation} from "react-router-dom";
 import ReactNotification from 'react-notifications-component'
 import 'react-notifications-component/dist/theme.css'
 
