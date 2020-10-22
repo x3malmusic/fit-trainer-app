@@ -4,18 +4,18 @@ import { getToken } from "../../services/token";
 
 import {
   NEW_EXERCISE,
-  ADD_EXERCISE,
   SET_ERROR,
   DELETE_EXERCISE,
   DELETE_EXERCISE_STATE,
-  UPDATE_EXERCISE
+  UPDATE_EXERCISE,
+  GET_USER
 } from "../actions/types";
 
 
 const createExercise = function* ({ payload }) {
   try {
     yield http.post("/api/exercises", { name: payload.name, measureType: payload.measureType }, {headers: {'authorization' : `Bearer ${getToken()}`}});
-    yield put({ type: ADD_EXERCISE, payload });
+    yield put({ type: GET_USER });
   } catch (e) {
     yield put({ type: SET_ERROR, payload: e.response.data });
   }

@@ -1,5 +1,4 @@
 import { NEW_EXERCISE,
-  ADD_EXERCISE,
   UPDATE_EXERCISE,
   DELETE_EXERCISE,
   UPDATE_EXERCISE_STATE
@@ -7,11 +6,6 @@ import { NEW_EXERCISE,
 
 export const createExercise = (exercise) => ({
   type: NEW_EXERCISE,
-  payload: exercise,
-});
-
-export const addExercise = (exercise) => ({
-  type: ADD_EXERCISE,
   payload: exercise,
 });
 

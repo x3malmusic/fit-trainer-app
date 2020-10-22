@@ -23,11 +23,6 @@ export default (state = initialState, action) => {
         ...state,
         error: action.payload,
       };
-    case "ADD_EXERCISE":
-      return {
-        ...state,
-        exercises: [...state.exercises, action.payload],
-      };
     case "UPDATE_EXERCISE_STATE":
       return {
         ...state,
