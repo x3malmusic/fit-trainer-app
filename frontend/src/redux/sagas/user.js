@@ -43,7 +43,6 @@ const getUser = function* () {
   try {
     const response = yield http.get("/api/users", { headers: {'authorization' : `Bearer ${getToken()}`} });
     yield put({ type: SET_USER, payload: response.data });
-    yield history.push('/dashboard')
   } catch (e) {
     yield put({ type: SET_ERROR, payload: e.response.data });
   }
@@ -54,7 +53,6 @@ const verifyUser = function* ({ payload }) {
     const response = yield http.post("/api/userverify", { email: payload.email, code: payload.code });
     yield put({ type: SET_USER, payload: response.data });
     yield saveToken(JSON.stringify(response.data.token))
-    yield history.push('/dashboard')
   } catch (e) {
     yield put({ type: SET_ERROR, payload: e.response.data });
   }
@@ -63,7 +61,6 @@ const verifyUser = function* ({ payload }) {
 const logoutUser = function* () {
   yield deleteToken()
   yield put({ type: SET_USER, payload: {}});
-  yield history.push('/signin')
 };
 
 

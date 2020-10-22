@@ -11,9 +11,7 @@ import { withProps } from 'recompose';
 import Button from "../components/CustomButtons/Button";
 import history from "../services/history";
 import {makeStyles} from "@material-ui/core/styles";
-import {styles} from "../assets/jss/material-dashboard-react/views/authStyle";
 import { formatDate, decodeDate, checkWorkoutDates } from "../helper/formatDate";
-import {logoutUser} from "../redux/actions/auth";
 
 const style = {
   wrapper: {

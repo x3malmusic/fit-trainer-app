@@ -1,6 +1,5 @@
 import { connect } from "react-redux";
 import Dashboard from "../views/Dashboard";
-import { updateExercises } from "../redux/actions/exercises";
 
 
 const mapStateToProps = ({user: { workouts }}) => ({

@@ -13,6 +13,7 @@ import Footer from "../components/Footer/Footer";
 import EmailVerify from '../containers/EmailVerify'
 import { getToken } from "../services/token";
 import { notify } from "../services/notification";
+import history from "../services/history";
 
 import styles from "assets/jss/material-dashboard-react/layouts/adminStyle.js";
 import {makeStyles} from "@material-ui/core/styles";
@@ -44,11 +45,19 @@ export default function App(props) {
 
   useEffect(() => {
     const token = getToken()
-
-    if(token) {
-      getUser()
-    }
+    if(token) getUser()
   }, [getUser])
+
+  useEffect(() => {
+    const found = currentRoutes.find(route => route.path === location.pathname)
+    if(!found) {
+      history.push(currentRoutes[0].path)
+    } else if(found.authReq && !emailConfirmed) {
+      history.push('/signin')
+    } else if(!found.authReq && emailConfirmed) {
+      history.push('/dashboard')
+    }
+  },[emailConfirmed])
 
   return (
     <>

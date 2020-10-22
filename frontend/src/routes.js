@@ -15,12 +15,14 @@ export const authRoutes = [
     name: "Sign In",
     icon: Dashboard,
     component: SignIn,
+    authReq: false
   },
   {
   path: "/signup",
     name: "Sign Up",
     icon: Dashboard,
     component: SignUp,
+    authReq: false
   },
 ]
 
@@ -31,31 +33,35 @@ export const dashboardRoutes = [
     name: "Dashboard",
     icon: Dashboard,
     component: DashboardPage,
+    authReq: true
   },
   {
     path: "/newexercise",
     name: "New Exercise",
     icon: Dashboard,
     component: NewExercise,
+    authReq: true
   },
   {
     path: "/editexercise",
     name: "Edit Exercise",
     icon: Dashboard,
     component: EditExercise,
+    authReq: true
   },
   {
     path: "/neworkout",
     name: "New Workout",
     icon: Dashboard,
     component: NewWorkout,
+    authReq: true
   },
   {
     path: "/editworkout",
     name: "Edit Workout",
     icon: Dashboard,
     component: EditWorkout,
+    authReq: true
   },
-
 ];
 
