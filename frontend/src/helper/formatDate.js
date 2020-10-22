@@ -14,3 +14,7 @@ export const decodeDate = (date) => {
   const arr = date.split('-')
   return new Date(parseInt(arr[0]), parseInt(arr[1]) - 1, parseInt(arr[2]))
 }
+
+export const checkWorkoutDates = (dates, date) => {
+  return dates.some(day => decodeDate(day).getTime() === date.getTime())
+}
