@@ -21,7 +21,6 @@ const loginUser = function* ({ payload }) {
       email: payload.email, password: payload.password
     });
     yield saveToken(JSON.stringify(response.data.token))
-    yield history.push('/dashboard')
     yield put({type: GET_USER })
   } catch (e) {
     yield put({ type: SET_ERROR, payload: e.response.data });
@@ -44,8 +43,8 @@ const getUser = function* () {
   try {
     const response = yield http.get("/api/users", { headers: {'authorization' : `Bearer ${getToken()}`} });
     yield put({ type: SET_USER, payload: response.data });
+    yield history.push('/dashboard')
   } catch (e) {
-    console.log(e)
     yield put({ type: SET_ERROR, payload: e.response.data });
   }
 };

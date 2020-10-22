@@ -53,8 +53,8 @@ export default function EditExercise(props) {
             <h2 className={classes.cardTitleWhite}>Edit exercises</h2>
           </CardHeader>
           <CardBody>
-            {!exercises.length && <h2>No exercises created</h2>}
-            {exercises.map((exercise, index) =>
+            {!exercises?.length && <h2>No exercises created</h2>}
+            {exercises?.map((exercise, index) =>
               <Exercise
                 exercise={exercise}
                 key={exercise._id}

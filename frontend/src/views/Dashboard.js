@@ -12,7 +12,7 @@ import Button from "../components/CustomButtons/Button";
 import history from "../services/history";
 import {makeStyles} from "@material-ui/core/styles";
 import {styles} from "../assets/jss/material-dashboard-react/views/authStyle";
-import { formatDate, decodeDate } from "../helper/formatDate";
+import { formatDate, decodeDate, checkWorkoutDates } from "../helper/formatDate";
 import {logoutUser} from "../redux/actions/auth";
 
 const style = {
@@ -36,21 +36,14 @@ const withHighlightedDates = withProps(({ highlighted, DayComponent }) => ({
 }));
 
 
-export default function Dashboard() {
+export default function Dashboard(props) {
   const classes = useStyles();
 
   const today = decodeDate(formatDate(new Date()))
-  const selected = [
-    '2020-10-22',
-    '2020-11-01',
-  ]
-
-  const checkWorkoutDates = (date) => {
-    return selected.some(day => decodeDate(day).getTime() === date.getTime())
-  }
+  const { workoutDates } = props
 
   const [selectedDate, setSelectedDate] = useState('')
-  const [canAddWorkout, setCanAddWorkout] = useState(() => !checkWorkoutDates(today))
+  const [canAddWorkout, setCanAddWorkout] = useState(() => !checkWorkoutDates(workoutDates, today))
   const [disableButtons, setDisableButtons] = useState(false)
 
 
@@ -59,7 +52,7 @@ export default function Dashboard() {
   }
 
   const editWorkout = () => {
-    // history.push(`/neworkout?id=${_id}`)
+    history.push(`/neworkout?date=${formatDate(selectedDate)}`)
   }
 
   const addExercise = () => {
@@ -69,7 +62,7 @@ export default function Dashboard() {
 
   const onSelectedDate = (date) => {
     setSelectedDate(date)
-    if(checkWorkoutDates(date)) {
+    if(checkWorkoutDates(workoutDates, date)) {
       setCanAddWorkout(false)
     } else {
       setCanAddWorkout(true)
@@ -98,7 +91,7 @@ export default function Dashboard() {
             width={'100%'}
             height={400}
             onSelect={onSelectedDate}
-            highlighted={selected}
+            highlighted={workoutDates}
           />
         </GridItem>
       </GridContainer>

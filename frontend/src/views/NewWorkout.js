@@ -40,6 +40,7 @@ export default function NewWorkout(props) {
   }
 
   const createWorkout = (value, index) => {
+    if (!queryString.date) return
     addWorkout({workout, date: queryString.date})
   }
 

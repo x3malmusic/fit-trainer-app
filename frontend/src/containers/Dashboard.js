@@ -1,14 +1,10 @@
 import { connect } from "react-redux";
-import EditExercise from "../views/EditExercise";
-import { updateExercisesState } from "../redux/actions/exercises";
+import Dashboard from "../views/Dashboard";
+import { updateExercises } from "../redux/actions/exercises";
 
 
 const mapStateToProps = ({user: { workouts }}) => ({
-  exercises
+  workoutDates: workouts.map(w => {return w.date})
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  updateExercises: (exercises) => dispatch(updateExercises(exercises)),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(EditExercise);
+export default connect(mapStateToProps, null)(Dashboard);

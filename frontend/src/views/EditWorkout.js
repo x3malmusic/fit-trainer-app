@@ -6,6 +6,7 @@ import CardBody from "../components/Card/CardBody";
 import CardFooter from "../components/Card/CardFooter";
 import GridContainer from "../components/Grid/GridContainer";
 import Button from "../components/CustomButtons/Button";
+import query from 'query-string'
 import {makeStyles} from "@material-ui/core/styles";
 import {styles} from "../assets/jss/material-dashboard-react/views/authStyle";
 import {swap} from "../helper/swapElements";
@@ -16,9 +17,13 @@ const useStyles = makeStyles(styles);
 
 export default function EditWorkout(props) {
 
-  const { exercises, workouts, updateWorkout } = props
+  const { exercises, workouts, updateWorkout, location } = props
+  const queryString = query.parse(location.search)
+  const findedWorkout = workouts.find(w => w.date === queryString.date)
+
+
   const [workout, setWorkout] = useState(() => {
-    if (workouts.length) return [...workouts[0].exercises]
+    if (findedWorkout) return [...findedWorkout.exercises]
     else return []
   })
 
@@ -36,6 +41,7 @@ export default function EditWorkout(props) {
   }
 
   const changeWorkout = () => {
+    if(!queryString.date) return
     updateWorkout({ workouts, _id: workouts[0]._id, exercises: workout })
   }
 
