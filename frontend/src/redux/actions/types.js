@@ -6,6 +6,7 @@ export const VERIFY_USER = "VERIFY_USER";
 export const LOGOUT_USER = "LOGOUT_USER";
 
 export const SET_ERROR = "SET_ERROR";
+export const SET_LOADING = "SET_LOADING";
 
 export const NEW_EXERCISE = "NEW_EXERCISE";
 export const UPDATE_EXERCISE = "UPDATE_EXERCISE";

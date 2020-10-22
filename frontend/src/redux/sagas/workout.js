@@ -1,6 +1,7 @@
 import { takeLatest, put } from "redux-saga/effects";
 import http from "../../services/http";
 import { getToken } from "../../services/token";
+import { notify } from "../../services/notification";
 import {
   ADD_WORKOUT,
   SET_ERROR,
@@ -12,6 +13,7 @@ import {
 const addWorkout = function* ({ payload }) {
   try {
     yield http.post("/api/workouts",{newWorkout: payload.workout, date: payload.date}, {headers: {'authorization' : `Bearer ${getToken()}`}});
+    yield notify({message: 'Workout created', type: 'success', title: 'Success'})
   } catch (e) {
     yield put({ type: SET_ERROR, payload: e.response.data });
   }
@@ -26,6 +28,7 @@ const updateWorkout = function* ({ payload }) {
     })
 
     yield put({ type: UPDATE_WORKOUT_STATE, payload: updatedWorkouts });
+    yield notify({message: 'Workout updated', type: 'success', title: 'Success'})
   } catch (e) {
     yield put({ type: SET_ERROR, payload: e.response.data });
   }

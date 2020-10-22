@@ -1,6 +1,7 @@
 import { takeLatest, put } from "redux-saga/effects";
 import {deleteToken, getToken, saveToken} from '../../services/token'
 import history from "../../services/history";
+import { notify } from "../../services/notification";
 
 import {
   LOGIN_USER,
@@ -9,7 +10,8 @@ import {
   REGISTER_USER,
   SET_ERROR,
   VERIFY_USER,
-  LOGOUT_USER
+  LOGOUT_USER,
+  SET_LOADING
 } from "../actions/types";
 
 import http from "../../services/http";
@@ -41,10 +43,14 @@ const registerUser = function* ({ payload }) {
 
 const getUser = function* () {
   try {
+    yield put({type: SET_LOADING, payload: true})
     const response = yield http.get("/api/users", { headers: {'authorization' : `Bearer ${getToken()}`} });
     yield put({ type: SET_USER, payload: response.data });
+    yield notify({message: `Welcome ${response.data.email}`, type: 'success', title: 'Success'})
   } catch (e) {
     yield put({ type: SET_ERROR, payload: e.response.data });
+  } finally {
+    yield put({type: SET_LOADING, payload: false})
   }
 };
 

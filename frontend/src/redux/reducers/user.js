@@ -4,7 +4,8 @@ const initialState = {
   workouts: [],
   exercises: [],
   emailConfirmed: false,
-  error: ''
+  error: '',
+  isLoading: false
 };
 
 export default (state = initialState, action) => {
@@ -22,6 +23,11 @@ export default (state = initialState, action) => {
       return {
         ...state,
         error: action.payload,
+      };
+    case "SET_LOADING":
+      return {
+        ...state,
+        isLoading:  action.payload,
       };
     case "UPDATE_EXERCISE_STATE":
       return {

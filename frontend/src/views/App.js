@@ -3,7 +3,7 @@ import {Route, useLocation} from "react-router-dom";
 import ReactNotification from 'react-notifications-component'
 import 'react-notifications-component/dist/theme.css'
 import 'index.css'
-
+import CircularProgress from '@material-ui/core/CircularProgress';
 import Sidebar from "../components/Sidebar/Sidebar";
 import {authRoutes, dashboardRoutes} from "../routes";
 import logo from "../assets/img/reactlogo.png";
@@ -24,7 +24,7 @@ const useStyles = makeStyles(styles);
 
 export default function App(props) {
 
-  const { emailConfirmed, getUser, error, logoutUser, email } = props
+  const { emailConfirmed, getUser, error, logoutUser, email, isLoading } = props
 
   const location = useLocation()
   const classes = useStyles();
@@ -81,7 +81,8 @@ export default function App(props) {
               logout={logoutUser}
               userEmail={email}
             />
-            { <div className={classes.map}>{switchRoutes(currentRoutes)}</div> }
+            {isLoading && <CircularProgress color="secondary" className="spinner"/>}
+            {!isLoading && <div className={classes.map}>{switchRoutes(currentRoutes)}</div> }
             <Route path='/emailverify' component={EmailVerify}/>
           </div>
           <Footer routes={currentRoutes}/>
