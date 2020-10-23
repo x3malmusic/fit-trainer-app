@@ -3,6 +3,7 @@ import {User} from '../models/User'
 import jwt from 'jsonwebtoken'
 import bcrypt from 'bcryptjs'
 import { validationResult } from 'express-validator'
+import { sendEmailVerification } from "../services/sendEmail";
 
 import { USER_EXIST,
   USER_NOT_FOUND,
@@ -33,14 +34,14 @@ export const login = asyncHandler(async (req, res, next) => {
   res.send({token})
 })
 
-export const  register = asyncHandler(async (req, res, next) => {
+export const register = asyncHandler(async (req, res, next) => {
 
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     return next(errors.array()[0].msg)
   }
 
-  const { email, password } = req.body
+  const { email, password, location } = req.body
   const candidate = await User.findOne({email})
   if(candidate) {
     return next(USER_EXIST)
@@ -51,8 +52,9 @@ export const  register = asyncHandler(async (req, res, next) => {
   const user = new User({ email, password: hashedPassword, exercises: [], workouts: [], verificationCode });
   await user.save()
 
-  const link = `/emailverify?email=${email}&code=${verificationCode}`
-  res.send({ link, verificationCode })
+  const link = `${location}/emailverify?email=${email}&code=${verificationCode}`
+  sendEmailVerification(email, link, verificationCode)
+  res.status(200).send()
 })
 
 export const userVerify = asyncHandler(async (req, res, next) => {
