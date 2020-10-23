@@ -8,6 +8,7 @@ import NewWorkout from "./containers/NewWorkout";
 import EditWorkout from "./containers/EditWorkout";
 import SignIn from "./containers/SignIn";
 import SignUp from "./containers/SignUp";
+import EmailVerify from './containers/EmailVerify'
 
 export const authRoutes = [
   {
@@ -23,6 +24,14 @@ export const authRoutes = [
     icon: Dashboard,
     component: SignUp,
     authReq: false
+  },
+  {
+    path: "/emailverify",
+    name: "Email Verify",
+    icon: Dashboard,
+    component: EmailVerify,
+    authReq: false,
+    hidden: true
   },
 ]
 

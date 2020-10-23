@@ -3,7 +3,7 @@ import http from "../../services/http";
 import { getToken } from "../../services/token";
 import { notify } from "../../services/notification";
 import {
-  ADD_WORKOUT,
+  ADD_WORKOUT, GET_USER,
   SET_ERROR,
   UPDATE_WORKOUT,
   UPDATE_WORKOUT_STATE
@@ -14,6 +14,7 @@ const addWorkout = function* ({ payload }) {
   try {
     yield http.post("/api/workouts",{newWorkout: payload.workout, date: payload.date}, {headers: {'authorization' : `Bearer ${getToken()}`}});
     yield notify({message: 'Workout created', type: 'success', title: 'Success'})
+    yield put({type: GET_USER, payload: true})
   } catch (e) {
     yield put({ type: SET_ERROR, payload: e.response.data });
   }

@@ -1,6 +1,5 @@
 import {asyncHandler} from '../middlewares/async'
 import { Workout } from '../models/Workout'
-import { WorkoutExercise } from "../models/WorkoutExercise";
 import { User } from "../models/User";
 import exercises from "../../frontend/src/redux/sagas/exercises";
 

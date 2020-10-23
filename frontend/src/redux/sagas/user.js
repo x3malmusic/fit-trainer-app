@@ -32,21 +32,20 @@ const loginUser = function* ({ payload }) {
 const registerUser = function* ({ payload }) {
   try {
     const response = yield http.post("/api/register", {
-      email: payload.email, password: payload.password
+      email: payload.email, password: payload.password, location: payload.location
     });
-    yield history.push(response.data.link)
   } catch (e) {
     yield put({ type: SET_ERROR, payload: e.response.data });
   }
 };
 
 
-const getUser = function* () {
+const getUser = function* ({payload}) {
   try {
-    yield put({type: SET_LOADING, payload: true})
+    if(!payload) yield put({type: SET_LOADING, payload: true})
     const response = yield http.get("/api/users", { headers: {'authorization' : `Bearer ${getToken()}`} });
     yield put({ type: SET_USER, payload: response.data });
-    yield notify({message: `Welcome ${response.data.email}`, type: 'success', title: 'Success'})
+    if(!payload) yield notify({message: `Welcome ${response.data.email}`, type: 'success', title: 'Success'})
   } catch (e) {
     yield put({ type: SET_ERROR, payload: e.response.data });
   } finally {

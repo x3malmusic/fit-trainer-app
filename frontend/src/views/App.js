@@ -10,7 +10,6 @@ import logo from "../assets/img/reactlogo.png";
 import bgImage from "../assets/img/sidebar-2.jpg";
 import Navbar from "../components/Navbars/Navbar";
 import Footer from "../components/Footer/Footer";
-import EmailVerify from '../containers/EmailVerify'
 import { getToken } from "../services/token";
 import { notify } from "../services/notification";
 import history from "../services/history";
@@ -83,7 +82,6 @@ export default function App(props) {
             />
             {isLoading && <CircularProgress color="secondary" className="spinner"/>}
             {!isLoading && <div className={classes.map}>{switchRoutes(currentRoutes)}</div> }
-            <Route path='/emailverify' component={EmailVerify}/>
           </div>
           <Footer routes={currentRoutes}/>
         </div>

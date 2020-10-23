@@ -28,32 +28,18 @@ export default function Sidebar(props) {
   var links = (
     <List className={classes.list}>
       {routes.map((prop, key) => {
-        var activePro = " ";
-        var listItemClasses;
-        if (prop.path === "/upgrade-to-pro") {
-          activePro = classes.activePro + " ";
-          listItemClasses = classNames({
-            [" " + classes[color]]: true
-          });
-        } else {
-          listItemClasses = classNames({
-            [" " + classes[color]]: activeRoute(prop.layout + prop.path)
-          });
-        }
-        const whiteFontClasses = classNames({
-          [" " + classes.whiteFont]: activeRoute(prop.layout + prop.path)
-        });
+        if(prop.hidden) return
         return (
           <NavLink
             to={prop.path}
-            className={activePro + classes.item}
+            className={classes.item}
             activeClassName="active"
             key={key}
           >
-            <ListItem button className={classes.itemLink + listItemClasses}>
+            <ListItem button className={classes.itemLink }>
               {typeof prop.icon === "string" ? (
                 <Icon
-                  className={classNames(classes.itemIcon, whiteFontClasses, {
+                  className={classNames(classes.itemIcon, {
                     [classes.itemIconRTL]: props.rtlActive
                   })}
                 >
@@ -61,14 +47,14 @@ export default function Sidebar(props) {
                 </Icon>
               ) : (
                 <prop.icon
-                  className={classNames(classes.itemIcon, whiteFontClasses, {
+                  className={classNames(classes.itemIcon, {
                     [classes.itemIconRTL]: props.rtlActive
                   })}
                 />
               )}
               <ListItemText
                 primary={props.rtlActive ? prop.rtlName : prop.name}
-                className={classNames(classes.itemText, whiteFontClasses, {
+                className={classNames(classes.itemText, {
                   [classes.itemTextRTL]: props.rtlActive
                 })}
                 disableTypography={true}

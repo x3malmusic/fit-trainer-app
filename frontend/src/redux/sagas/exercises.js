@@ -16,7 +16,7 @@ import {
 const createExercise = function* ({ payload }) {
   try {
     yield http.post("/api/exercises", { name: payload.name, measureType: payload.measureType }, {headers: {'authorization' : `Bearer ${getToken()}`}});
-    yield put({ type: GET_USER });
+    yield put({ type: GET_USER, payload: true });
     yield notify({message: 'Exercise created', type: 'success', title: 'Success'})
   } catch (e) {
     yield put({ type: SET_ERROR, payload: e.response.data });

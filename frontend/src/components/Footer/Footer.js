@@ -18,14 +18,15 @@ export default function Footer(props) {
   const classes = useStyles();
 
   const makeLinks = (routes) => {
-    return routes.map((prop, key) =>
-      <ListItem key={key} className={classes.inlineBlock}>
-        <NavLink
-          to={prop.path}
-          className={classes.block}
-        >{prop.name}</NavLink>
-      </ ListItem>
-    )
+    return routes.map((prop, key) => {
+      if(prop.hidden) return null
+      return <ListItem key={key} className={classes.inlineBlock}>
+                <NavLink
+                  to={prop.path}
+                  className={classes.block}
+                >{prop.name}</NavLink>
+              </ ListItem>
+      })
   };
 
   return (
@@ -40,8 +41,7 @@ export default function Footer(props) {
           <span>
             &copy; {1900 + new Date().getYear()}{" "}
             <a
-              href="https://www.creative-tim.com?ref=mdr-footer"
-              target="_blank"
+              href=""
               className={classes.a}
             >
               Creative Tim

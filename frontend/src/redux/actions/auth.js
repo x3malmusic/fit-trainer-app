@@ -23,9 +23,8 @@ export const registerUser = (data) => ({
   payload: data
 });
 
-export const getUser = (user) => ({
+export const getUser = () => ({
   type: GET_USER,
-  payload: user,
 });
 
 export const verifyUser = (code) => ({

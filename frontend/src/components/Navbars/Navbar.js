@@ -21,13 +21,12 @@ export default function Header(props) {
   const { logout, userEmail } = props
 
   function makeBrand() {
-    let name;
+    let name = "";
     props.routes.map(prop => {
       if (props.currentRoute.pathname === prop.path) {
         name = prop.name;
       }
     });
-    if(!name) name = "Email Verify"
     return name;
   }
   const { color } = props;

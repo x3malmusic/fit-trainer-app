@@ -50,7 +50,7 @@ export default function Dashboard(props) {
   }
 
   const editWorkout = () => {
-    history.push(`/neworkout?date=${formatDate(selectedDate)}`)
+    history.push(`/editworkout?date=${formatDate(selectedDate)}`)
   }
 
   const addExercise = () => {
@@ -60,7 +60,7 @@ export default function Dashboard(props) {
 
   const onSelectedDate = (date) => {
     setSelectedDate(date)
-    if(checkWorkoutDates(workoutDates, date)) {
+    if(checkWorkoutDates(workoutDates, decodeDate(formatDate(date)))) {
       setCanAddWorkout(false)
     } else {
       setCanAddWorkout(true)

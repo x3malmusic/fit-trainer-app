@@ -8,9 +8,7 @@ export const getUser = asyncHandler(async (req, res, next) => {
   const user = await User.findOne({email})
     .populate('exercises')
     .populate({path: 'workouts', model: 'Workout',
-      populate: { path: 'exercises', model: 'WorkoutExercise' ,
-      populate: { path: 'exercise', model: 'Exercise' }
-      }
+      populate: { path: 'exercises.exercise', model: 'Exercise' }
     })
   if(!user) {
     return next('User not Found')
