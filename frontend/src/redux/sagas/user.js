@@ -1,6 +1,5 @@
 import { takeLatest, put } from "redux-saga/effects";
 import {deleteToken, getToken, saveToken} from '../../services/token'
-import history from "../../services/history";
 import { notify } from "../../services/notification";
 
 import {
@@ -31,7 +30,7 @@ const loginUser = function* ({ payload }) {
 
 const registerUser = function* ({ payload }) {
   try {
-    const response = yield http.post("/api/register", {
+    yield http.post("/api/register", {
       email: payload.email, password: payload.password, location: payload.location
     });
   } catch (e) {

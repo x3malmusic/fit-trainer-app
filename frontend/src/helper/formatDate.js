@@ -18,3 +18,8 @@ export const decodeDate = (date) => {
 export const checkWorkoutDates = (dates, date) => {
   return dates.some(day => decodeDate(day).getTime() === date.getTime())
 }
+
+export const dateIsPast = (date) => {
+  const today = decodeDate(formatDate(new Date()))
+  return today.getTime() > date.getTime()
+}

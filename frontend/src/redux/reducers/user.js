@@ -5,7 +5,8 @@ const initialState = {
   exercises: [],
   emailConfirmed: false,
   error: '',
-  isLoading: false
+  isLoading: false,
+  currentDate: new Date(),
 };
 
 export default (state = initialState, action) => {
@@ -48,6 +49,11 @@ export default (state = initialState, action) => {
       return {
         ...state,
         workouts:  action.payload,
+      };
+    case "SET_DATE":
+      return {
+        ...state,
+        currentDate:  action.payload,
       };
     default:
       return state;

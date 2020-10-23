@@ -6,7 +6,6 @@ import CardBody from "../components/Card/CardBody";
 import CardFooter from "../components/Card/CardFooter";
 import GridContainer from "../components/Grid/GridContainer";
 import Button from "../components/CustomButtons/Button";
-import query from 'query-string'
 import {makeStyles} from "@material-ui/core/styles";
 import {styles} from "../assets/jss/material-dashboard-react/views/authStyle";
 import {swap} from "../helper/swapElements";
@@ -17,18 +16,14 @@ const useStyles = makeStyles(styles);
 
 export default function EditWorkout(props) {
 
-  const { exercises, workouts, updateWorkout, location } = props
-  const queryString = query.parse(location.search)
-  const findedWorkout = workouts.find(w => w.date === queryString.date)
-
+  const classes = useStyles();
+  const { exercises, workouts, updateWorkout, findedWorkout } = props
 
   const [workout, setWorkout] = useState(() => {
     if (findedWorkout) return [...findedWorkout.exercises]
     else return []
   })
 
-
-  const classes = useStyles();
 
   const moveUp = (index) => {
     swap(workout, index, false)
@@ -41,7 +36,6 @@ export default function EditWorkout(props) {
   }
 
   const changeWorkout = () => {
-    if(!queryString.date) return
     updateWorkout({ workouts, _id: workouts[0]._id, exercises: workout })
   }
 
@@ -76,18 +70,19 @@ export default function EditWorkout(props) {
 
   return (
     <GridContainer>
-      <GridItem xs={12} sm={12} md={10}>
-        <Card>
-          <CardHeader color="primary">
-            <h2 className={classes.cardTitleWhite}>Edit workout</h2>
-          </CardHeader>
-          <CardBody>
-            <GridContainer>
-              <GridItem xs={12} sm={12} md={6}>
-                <Button color="primary" onClick={addExercise}>ADD EXERCISE</Button>
-              </GridItem>
-            </GridContainer>
-            {workout.map((ex, index) =>
+      {findedWorkout ?
+        <GridItem xs={12} sm={12} md={10}>
+          <Card>
+            <CardHeader color="primary">
+              <h2 className={classes.cardTitleWhite}>Edit workout</h2>
+            </CardHeader>
+            <CardBody>
+              <GridContainer>
+                <GridItem xs={12} sm={12} md={6}>
+                  <Button color="primary" onClick={addExercise}>ADD EXERCISE</Button>
+                </GridItem>
+              </GridContainer>
+              {workout.map((ex, index) =>
                 <Workout
                   moveUp={moveUp}
                   moveDown={moveDown}
@@ -101,16 +96,20 @@ export default function EditWorkout(props) {
                   changeMeasurement={changeMeasurement}
                 />
               )}
-          </CardBody>
-          <CardFooter>
-            <GridContainer>
-              <GridItem xs={12} sm={12} md={6}>
-                <Button color="primary" onClick={changeWorkout}>UPDATE WORKOUT</Button>
-              </GridItem>
-            </GridContainer>
-          </CardFooter>
-        </Card>
-      </GridItem>
+            </CardBody>
+            <CardFooter>
+              <GridContainer>
+                <GridItem xs={12} sm={12} md={6}>
+                  <Button color="primary" onClick={changeWorkout}>UPDATE WORKOUT</Button>
+                </GridItem>
+              </GridContainer>
+            </CardFooter>
+          </Card>
+        </GridItem>
+        :
+        <h2 style={{marginLeft: 30}}>{'There is no workout to edit on this date'}</h2>
+      }
+
     </GridContainer>
   )
 

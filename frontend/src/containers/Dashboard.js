@@ -1,9 +1,15 @@
 import { connect } from "react-redux";
 import Dashboard from "../views/Dashboard";
+import { setDate } from "../redux/actions/workout";
 
 
-const mapStateToProps = ({user: { workouts }}) => ({
-  workoutDates: workouts.map(w => {return w.date})
+const mapStateToProps = ({user: { workouts, currentDate }}) => ({
+  workoutDates: workouts.map(w => {return w.date}),
+  currentDate,
 });
 
-export default connect(mapStateToProps, null)(Dashboard);
+const mapDispatchToProps = (dispatch) => ({
+  setDate: (date) => dispatch(setDate(date))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);

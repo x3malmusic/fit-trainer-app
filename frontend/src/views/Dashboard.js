@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {useEffect, useState} from "react";
 // @material-ui/core
 import GridItem from "components/Grid/GridItem.js";
 import GridContainer from "components/Grid/GridContainer.js";
@@ -11,7 +11,7 @@ import { withProps } from 'recompose';
 import Button from "../components/CustomButtons/Button";
 import history from "../services/history";
 import {makeStyles} from "@material-ui/core/styles";
-import { formatDate, decodeDate, checkWorkoutDates } from "../helper/formatDate";
+import { formatDate, decodeDate, checkWorkoutDates, dateIsPast } from "../helper/formatDate";
 
 const style = {
   wrapper: {
@@ -38,38 +38,34 @@ export default function Dashboard(props) {
   const classes = useStyles();
 
   const today = decodeDate(formatDate(new Date()))
-  const { workoutDates } = props
+  const { workoutDates, setDate, currentDate } = props
 
-  const [selectedDate, setSelectedDate] = useState('')
   const [canAddWorkout, setCanAddWorkout] = useState(() => !checkWorkoutDates(workoutDates, today))
   const [disableButtons, setDisableButtons] = useState(false)
 
 
   const createWorkout = () => {
-    history.push(`/neworkout?date=${formatDate(selectedDate)}`)
+    history.push(`/neworkout`)
   }
 
   const editWorkout = () => {
-    history.push(`/editworkout?date=${formatDate(selectedDate)}`)
+    history.push(`/editworkout`)
   }
 
   const addExercise = () => {
     history.push('/newexercise')
   }
 
+  useEffect(() => {
+    setDisableButtons(dateIsPast(currentDate))
+  }, [currentDate])
 
   const onSelectedDate = (date) => {
-    setSelectedDate(date)
-    if(checkWorkoutDates(workoutDates, decodeDate(formatDate(date)))) {
-      setCanAddWorkout(false)
-    } else {
-      setCanAddWorkout(true)
-    }
-    if(today.getTime() > date.getTime()) {
-      setDisableButtons(true)
-    } else setDisableButtons(false)
-  }
+    const formattedDate = decodeDate(formatDate(date))
+    setDate(formattedDate)
 
+    setCanAddWorkout(!checkWorkoutDates(workoutDates, formattedDate))
+  }
 
   return (
     <div>
@@ -88,6 +84,7 @@ export default function Dashboard(props) {
             Component={withDateSelection(withHighlightedDates(Calendar))}
             width={'100%'}
             height={400}
+            selected={currentDate}
             onSelect={onSelectedDate}
             highlighted={workoutDates}
           />

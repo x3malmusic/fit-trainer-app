@@ -11,21 +11,22 @@ import {styles} from "../assets/jss/material-dashboard-react/views/authStyle";
 import query from 'query-string'
 import {swap} from "../helper/swapElements";
 import Workout from "../components/Workout/Workout";
+import { formatDate } from "../helper/formatDate";
 
 
 const useStyles = makeStyles(styles);
 
 export default function NewWorkout(props) {
 
-  const { exercises, addWorkout, location } = props
+  const { exercises, addWorkout, location, currentDate, cannotAddWorkout, alreadyHasWorkout } = props
   const queryString = query.parse(location.search)
+
+  console.log(alreadyHasWorkout)
 
   const [workout, setWorkout] = useState(() => {
     if (exercises.length) return [{...exercises[0], repeats: 0, measurement: 0}]
     else return []
   })
-
-
 
   const classes = useStyles();
 
@@ -75,7 +76,9 @@ export default function NewWorkout(props) {
 
   return (
     <GridContainer>
-      <GridItem xs={12} sm={12} md={10}>
+      {cannotAddWorkout && <h2 style={{marginLeft: 30}}>You cannot add workout on this date</h2>}
+      {!cannotAddWorkout && <h2 style={{marginLeft: 30}}>Add workout on {formatDate(currentDate)}</h2>}
+      {!cannotAddWorkout && <GridItem xs={12} sm={12} md={10}>
         <Card>
           <CardHeader color="primary">
             <h2 className={classes.cardTitleWhite}>New workout</h2>
@@ -112,7 +115,7 @@ export default function NewWorkout(props) {
             </GridContainer>
           </CardFooter>
         </Card>
-      </GridItem>
+      </GridItem>}
     </GridContainer>
   )
 

@@ -19,6 +19,8 @@ export const ADD_WORKOUT_STATE = "ADD_WORKOUT_STATE";
 export const UPDATE_WORKOUT_STATE = "UPDATE_WORKOUT_STATE";
 export const UPDATE_WORKOUT = "UPDATE_WORKOUT";
 
+export const SET_DATE = "SET_DATE";
+
 
 
 
