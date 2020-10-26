@@ -18,12 +18,12 @@ const useStyles = makeStyles(styles);
 export default function Header(props) {
   const classes = useStyles();
 
-  const { logout, userEmail } = props
+  const { logout, userEmail, currentRoute } = props
 
   function makeBrand() {
     let name = "";
-    props.routes.map(prop => {
-      if (props.currentRoute.pathname === prop.path) {
+    props.routes.forEach(prop => {
+      if (currentRoute.pathname === prop.path) {
         name = prop.name;
       }
     });

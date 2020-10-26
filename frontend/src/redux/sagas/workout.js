@@ -7,7 +7,6 @@ import {
   UPDATE_WORKOUT,
   UPDATE_WORKOUT_STATE
 } from "../actions/types";
-import {logoutUser} from "../actions/auth";
 
 
 const addWorkout = function* ({ payload }) {
