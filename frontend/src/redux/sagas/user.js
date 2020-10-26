@@ -1,5 +1,5 @@
 import { takeLatest, put } from "redux-saga/effects";
-import {deleteToken, getToken, saveToken} from '../../services/token'
+import {deleteToken, saveToken} from '../../services/token'
 import { notify } from "../../services/notification";
 
 import {
@@ -42,7 +42,7 @@ const registerUser = function* ({ payload }) {
 const getUser = function* ({payload}) {
   try {
     if(!payload) yield put({type: SET_LOADING, payload: true})
-    const response = yield http.get("/api/users", { headers: {'authorization' : `Bearer ${getToken()}`} });
+    const response = yield http.get("/api/users");
     yield put({ type: SET_USER, payload: response.data });
     if(!payload) yield notify({message: `Welcome ${response.data.email}`, type: 'success', title: 'Success'})
   } catch (e) {
