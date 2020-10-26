@@ -17,7 +17,7 @@ const useStyles = makeStyles(styles);
 export default function EditWorkout(props) {
 
   const classes = useStyles();
-  const { exercises, workouts, updateWorkout, findedWorkout } = props
+  const { exercises, workouts, updateWorkout, findedWorkout, cannotEditWorkout } = props
 
   const [workout, setWorkout] = useState(() => {
     if (findedWorkout) return [...findedWorkout.exercises]
@@ -100,7 +100,7 @@ export default function EditWorkout(props) {
             <CardFooter>
               <GridContainer>
                 <GridItem xs={12} sm={12} md={6}>
-                  <Button color="primary" onClick={changeWorkout}>UPDATE WORKOUT</Button>
+                  <Button color="primary" disabled={cannotEditWorkout} onClick={changeWorkout}>UPDATE WORKOUT</Button>
                 </GridItem>
               </GridContainer>
             </CardFooter>

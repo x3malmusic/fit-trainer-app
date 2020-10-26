@@ -21,8 +21,6 @@ export default function NewWorkout(props) {
   const { exercises, addWorkout, location, currentDate, cannotAddWorkout, alreadyHasWorkout } = props
   const queryString = query.parse(location.search)
 
-  console.log(alreadyHasWorkout)
-
   const [workout, setWorkout] = useState(() => {
     if (exercises.length) return [{...exercises[0], repeats: 0, measurement: 0}]
     else return []
@@ -110,7 +108,7 @@ export default function NewWorkout(props) {
           <CardFooter>
             <GridContainer>
               <GridItem xs={12} sm={12} md={6}>
-                <Button color="primary" onClick={createWorkout}>CREATE WORKOUT</Button>
+                <Button color="primary" disabled={alreadyHasWorkout} onClick={createWorkout}>CREATE WORKOUT</Button>
               </GridItem>
             </GridContainer>
           </CardFooter>
