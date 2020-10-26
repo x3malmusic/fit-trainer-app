@@ -72,7 +72,7 @@ export const userVerify = asyncHandler(async (req, res, next) => {
   await user.updateOne({emailConfirmed: true})
   const updatedUser = await User.findOne({email})
 
-  const token = jwt.sign({ userId: user.id, email,  }, process.env.JWT_SECRET, {
+  const token = jwt.sign({ userId: user.id, email }, process.env.JWT_SECRET, {
     expiresIn: "24h",
   });
 

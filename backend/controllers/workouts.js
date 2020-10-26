@@ -1,7 +1,6 @@
 import {asyncHandler} from '../middlewares/async'
 import { Workout } from '../models/Workout'
 import { User } from "../models/User";
-import exercises from "../../frontend/src/redux/sagas/exercises";
 
 
 export const createWorkout = asyncHandler(async (req, res, next) => {
