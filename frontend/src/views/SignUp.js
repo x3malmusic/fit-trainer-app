@@ -10,6 +10,7 @@ import Button from "components/CustomButtons/Button.js";
 import { makeStyles } from "@material-ui/core/styles";
 import { NavLink } from "react-router-dom"
 import { styles } from "../assets/jss/material-dashboard-react/views/authStyle";
+import emailValidator from "../services/emailValidator";
 
 const useStyles = makeStyles(styles);
 
@@ -27,9 +28,10 @@ export default function SignUp(props) {
       setError('Passwords do not match')
     } else if(password.length < 6) {
       setError('Password length should be at least 6 symbols')
-    } else if(!email.includes('@')) {
+    } else if(!emailValidator(email)) {
       setError('Email is not valid')
-    } else registerUser({email, password, location: window.location.origin})
+    }
+    else registerUser({email, password, location: window.location.origin})
   }
 
   useEffect(() => { setError('') }, [email, password, repeatPassword, setError])
