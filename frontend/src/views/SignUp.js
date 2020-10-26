@@ -30,8 +30,7 @@ export default function SignUp(props) {
       setError('Password length should be at least 6 symbols')
     } else if(!emailValidator(email)) {
       setError('Email is not valid')
-    }
-    else registerUser({email, password, location: window.location.origin})
+    } else registerUser({email, password, location: window.location.origin})
   }
 
   useEffect(() => { setError('') }, [email, password, repeatPassword, setError])
