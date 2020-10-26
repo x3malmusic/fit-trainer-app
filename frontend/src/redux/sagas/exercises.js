@@ -18,7 +18,7 @@ const createExercise = function* ({ payload }) {
     yield put({ type: GET_USER, payload: true });
     yield notify({message: 'Exercise created', type: 'success', title: 'Success'})
   } catch (e) {
-    yield put({ type: SET_ERROR, payload: e.response.data });
+    yield put({ type: SET_ERROR, payload: e.response?.data });
   }
 };
 
@@ -27,7 +27,7 @@ const deleteExercise = function* ({ payload }) {
     yield http.delete(`/api/exercises/${payload}`);
     yield put({ type: DELETE_EXERCISE_STATE, payload });
   } catch (e) {
-    yield put({ type: SET_ERROR, payload: e.response.data });
+    yield put({ type: SET_ERROR, payload: e.response?.data });
   }
 };
 
@@ -36,7 +36,7 @@ const updateExercise = function* ({ payload }) {
     yield http.put("/api/exercises",{exercises: payload});
     yield notify({message: 'Exercises updated', type: 'success', title: 'Success'})
   } catch (e) {
-    yield put({ type: SET_ERROR, payload: e.response.data });
+    yield put({ type: SET_ERROR, payload: e.response?.data });
   }
 };
 

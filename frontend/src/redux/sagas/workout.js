@@ -7,6 +7,7 @@ import {
   UPDATE_WORKOUT,
   UPDATE_WORKOUT_STATE
 } from "../actions/types";
+import {logoutUser} from "../actions/auth";
 
 
 const addWorkout = function* ({ payload }) {
@@ -15,7 +16,7 @@ const addWorkout = function* ({ payload }) {
     yield notify({message: 'Workout created', type: 'success', title: 'Success'})
     yield put({type: GET_USER, payload: true})
   } catch (e) {
-    yield put({ type: SET_ERROR, payload: e.response.data });
+    yield put({ type: SET_ERROR, payload: e.response?.data });
   }
 };
 
@@ -26,11 +27,10 @@ const updateWorkout = function* ({ payload }) {
       if(workout._id === payload._id) return {...workout, exercises: payload.exercises}
       else return workout
     })
-
     yield put({ type: UPDATE_WORKOUT_STATE, payload: updatedWorkouts });
     yield notify({message: 'Workout updated', type: 'success', title: 'Success'})
   } catch (e) {
-    yield put({ type: SET_ERROR, payload: e.response.data });
+    yield put({ type: SET_ERROR, payload: e.response?.data });
   }
 };
 

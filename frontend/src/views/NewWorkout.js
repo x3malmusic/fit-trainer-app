@@ -8,7 +8,6 @@ import GridContainer from "../components/Grid/GridContainer";
 import Button from "../components/CustomButtons/Button";
 import {makeStyles} from "@material-ui/core/styles";
 import {styles} from "../assets/jss/material-dashboard-react/views/authStyle";
-import query from 'query-string'
 import {swap} from "../helper/swapElements";
 import Workout from "../components/Workout/Workout";
 import { formatDate } from "../helper/formatDate";
@@ -18,8 +17,7 @@ const useStyles = makeStyles(styles);
 
 export default function NewWorkout(props) {
 
-  const { exercises, addWorkout, location, currentDate, cannotAddWorkout, alreadyHasWorkout } = props
-  const queryString = query.parse(location.search)
+  const { exercises, addWorkout, currentDate, cannotAddWorkout, alreadyHasWorkout } = props
 
   const [workout, setWorkout] = useState(() => {
     if (exercises.length) return [{...exercises[0], repeats: 0, measurement: 0}]
@@ -39,8 +37,7 @@ export default function NewWorkout(props) {
   }
 
   const createWorkout = (value, index) => {
-    if (!queryString.date) return
-    addWorkout({workout, date: queryString.date})
+    addWorkout({workout, date: formatDate(currentDate)})
   }
 
   const changeExercise = (id, index) => {

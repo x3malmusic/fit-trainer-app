@@ -24,7 +24,7 @@ const loginUser = function* ({ payload }) {
     yield saveToken(JSON.stringify(response.data.token))
     yield put({type: GET_USER })
   } catch (e) {
-    yield put({ type: SET_ERROR, payload: e.response.data });
+    yield put({ type: SET_ERROR, payload: e.response?.data });
   }
 };
 
@@ -33,8 +33,9 @@ const registerUser = function* ({ payload }) {
     yield http.post("/api/register", {
       email: payload.email, password: payload.password, location: payload.location
     });
+    yield notify({message: 'Verification code was sent on your email', type: 'success', title: 'Success'})
   } catch (e) {
-    yield put({ type: SET_ERROR, payload: e.response.data });
+    yield put({ type: SET_ERROR, payload: e.response?.data });
   }
 };
 
@@ -46,7 +47,7 @@ const getUser = function* ({payload}) {
     yield put({ type: SET_USER, payload: response.data });
     if(!payload) yield notify({message: `Welcome ${response.data.email}`, type: 'success', title: 'Success'})
   } catch (e) {
-    yield put({ type: SET_ERROR, payload: e.response.data });
+    yield put({ type: SET_ERROR, payload: e.response?.data });
   } finally {
     yield put({type: SET_LOADING, payload: false})
   }
@@ -58,7 +59,7 @@ const verifyUser = function* ({ payload }) {
     yield put({ type: SET_USER, payload: response.data });
     yield saveToken(JSON.stringify(response.data.token))
   } catch (e) {
-    yield put({ type: SET_ERROR, payload: e.response.data });
+    yield put({ type: SET_ERROR, payload: e.response?.data });
   }
 };
 

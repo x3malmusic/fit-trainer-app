@@ -63,7 +63,6 @@ export default function Dashboard(props) {
   const onSelectedDate = (date) => {
     const formattedDate = decodeDate(formatDate(date))
     setDate(formattedDate)
-
     setCanAddWorkout(!checkWorkoutDates(workoutDates, formattedDate))
   }
 

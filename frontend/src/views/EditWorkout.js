@@ -36,7 +36,7 @@ export default function EditWorkout(props) {
   }
 
   const changeWorkout = () => {
-    updateWorkout({ workouts, _id: workouts[0]._id, exercises: workout })
+    updateWorkout({ workouts, _id: findedWorkout._id, exercises: workout })
   }
 
   const changeExercise = (id, index) => {
